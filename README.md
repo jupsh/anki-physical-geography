@@ -21,14 +21,45 @@ then in Anki choose **File → Import**.
 | Peninsulas | 23 |
 | Deserts | 22 |
 
-Each feature has up to three cards:
+Each feature has a _Map → Name_ card and a _Name → Map_ card. 148 also have a _Fact_ card: one
+question that ties the feature to countries, seas and cities.
 
-- **Map → Name:** a map with the feature highlighted; name it.
-- **Name → Map:** the name; picture where it is.
-- **Fact:** one question that links it to countries, seas and cities, e.g. "Which four capital
-  cities stand on the Danube?" (148 features have one.)
+<table>
+  <tr><th scope="col" colspan="2">Map → Name</th></tr>
+  <tr><th scope="col">Front</th><th scope="col">Back</th></tr>
+  <tr>
+    <td><img src="doc/map-name-front.png" width="380"></td>
+    <td><img src="doc/map-name-back.png" width="380"></td>
+  </tr>
+</table>
 
-Tags: `PG::<Subdeck>` and `PG::<Continent>`, e.g. `PG::Rivers`, `PG::Europe`.
+<table>
+  <tr><th scope="col" colspan="2">Name → Map</th></tr>
+  <tr><th scope="col">Front</th><th scope="col">Back</th></tr>
+  <tr>
+    <td><img src="doc/name-map-front.png" width="380"></td>
+    <td><img src="doc/name-map-back.png" width="380"></td>
+  </tr>
+</table>
+
+<table>
+  <tr><th scope="col" colspan="2">Fact</th></tr>
+  <tr><th scope="col">Front</th><th scope="col">Back</th></tr>
+  <tr>
+    <td><img src="doc/fact-front.png" width="380"></td>
+    <td><img src="doc/fact-back.png" width="380"></td>
+  </tr>
+</table>
+
+### Custom study
+
+Every note is tagged with its subdeck and continent (`PG::Rivers`, `PG::Europe`, …), so you can
+build [filtered decks](https://docs.ankiweb.net/filtered-decks.html) for narrower goals:
+
+- `card:"Map → Name"` to learn locations and nothing else;
+- `tag:PG::Rivers tag:PG::Europe` to learn Europe's rivers;
+- `-card:Fact` to skip the fact cards;
+- `tag:PG::Africa or tag:PG::Asia` to focus on two continents.
 
 ## Maps
 
@@ -55,9 +86,15 @@ uv run python physical_geography/build.py --only Nile     # just matching featur
 The first build downloads the Natural Earth files (~30 MB) into `build/natural_earth/` and takes
 about a minute. Maps are then cached in `build/physical_geography/`.
 
-Features live in `physical_geography/content/*.py`. Each one names its map source (`Region`,
-`Lake` or `River`; see `geodata.py`) and can change the map framing with `span=` (width in km) or
-`zoom=`. Note GUIDs come from the feature's kind and name, so re-importing updates existing notes,
-but renaming a feature adds it as a new note.
+Note GUIDs come from each feature's kind and name, so re-importing a new version updates your
+existing notes and keeps your progress. Renaming a feature, though, adds it as a new note.
 
-Corrections are welcome: open an issue or a pull request.
+## Contributing
+
+Spotted a mistake, or think a feature is missing? [Open an issue](https://github.com/jupsh/anki-physical-geography/issues).
+To change the deck yourself, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+Public domain ([Unlicense](LICENSE.md)), like Ultimate Geography. The maps are generated from
+public-domain Natural Earth data.

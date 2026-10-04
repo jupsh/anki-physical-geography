@@ -1,0 +1,47 @@
+name: Build
+
+# Builds the deck on every push and pull request (like Ultimate Geography's integrity check).
+# Pushing a version tag (v1.1, ...) also creates a draft release with the .apkg attached;
+# write the release notes on GitHub, then publish it.
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Install Cairo
+        run: sudo apt-get update && sudo apt-get install -y libcairo2
+
+      - name: Cache Natural Earth data
+        uses: actions/cache@v4
+        with:
+          path: build/natural_earth
+          key: natural-earth-${{ hashFiles('physical_geography/geodata.py') }}
+
+      - name: Build deck
+        run: uv run python physical_geography/build.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Physical_Geography
+          path: dist/Physical_Geography.apkg
+
+      - name: Create draft release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          printf '### New features\n\n### Changes to features\n\n### Changes to maps\n\n### Other changes\n' > notes.md
+          gh release create "$GITHUB_REF_NAME" dist/Physical_Geography.apkg --draft --title "$GITHUB_REF_NAME" --notes-file notes.md
