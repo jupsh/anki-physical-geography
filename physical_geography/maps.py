@@ -344,21 +344,68 @@ def _corner(pixels, H):
     return min(("lb", "rb", "lt", "rt"), key=hits)
 
 
+# --------------------------------------------------------------------------- continents
+
+# Fixed frames for the Name → Map cards, which show the feature's (first) continent: blank on the
+# front, with the feature highlighted on the back. Each frame is fitted to a few (lon, lat) points
+# around the continent's edge (a lon/lat box would be far too big for Asia), with an optional
+# centre.
+CONTINENTS = {
+    "Africa": ([(-18, 15), (-10, 36), (11, 38), (33, 32), (52, 12), (40, -15), (20, -35)], None),
+    "Asia": ([(26, 41), (43, 12), (60, 22), (77, 8), (100, 1), (120, 18), (142, 40),
+              (163, 51), (190, 66), (140, 74), (105, 78), (70, 73)], (100, 45)),
+    "Europe": ([(-25, 64), (-10, 36), (15, 36), (35, 34), (50, 40), (66, 55), (66, 69),
+                (25, 71)], None),
+    "North America": ([(-168, 54), (-160, 71), (-90, 72), (-55, 50), (-80, 25), (-83, 8),
+                       (-117, 32)], None),
+    "South America": ([(-82, 0), (-72, 12), (-35, -7), (-58, -35), (-70, -56)], None),
+    "Oceania": ([(113, -22), (130, -11), (143, -10), (154, -28), (179, -38), (166, -47),
+                 (146, -44), (115, -35)], None),
+    # centred just off the pole: Antarctica's land polygon doesn't draw from exactly -90
+    "Antarctica": ([(lon, -62) for lon in range(-180, 180, 15)], (0, -89.9)),
+}
+
+
+def continent_view(region):
+    points, center = CONTINENTS[region]
+    return View([points], center=center)
+
+
 # --------------------------------------------------------------------------- render
+
+def _seqs(kind, shapes):
+    return shapes if kind == "river" else [ring for poly in shapes for ring in poly]
+
 
 def render_svg(source, zoom=1.0, span=None, center=None):
     kind, shapes = source.shapes()
-    seqs = shapes if kind == "river" else [ring for poly in shapes for ring in poly]
-    v = View(seqs, zoom=zoom, span=span, center=center)
-    out = base_layers(v)
+    v = View(_seqs(kind, shapes), zoom=zoom, span=span, center=center)
+    return _svg(v, kind, shapes, locator=True)
+
+
+def render_continent_svg(region, source=None):
+    """The blank continent map, or (given a source) a transparent overlay of just the feature's
+    highlight, to lay over the blank map. One shared base keeps the deck small."""
+    if source is None:
+        return _svg(continent_view(region), None, [], locator=False)
+    kind, shapes = source.shapes()
+    return _svg(continent_view(region), kind, shapes, locator=False, overlay=True)
+
+
+def _svg(v, kind, shapes, locator, overlay=False):
+    seqs = _seqs(kind, shapes)
+    out = [] if overlay else base_layers(v)
     if kind == "area":
-        out.append(f'<path d="{v.poly_path(shapes)}" fill="{HI_LAND}" fill-opacity="0.85" '
-                   f'fill-rule="evenodd"/>')
-    out += water_layers(v)
+        # an overlay can't put the borders and rivers back on top, so let them show through
+        out.append(f'<path d="{v.poly_path(shapes)}" fill="{HI_LAND}" '
+                   f'fill-opacity="{0.7 if overlay else 0.85}" fill-rule="evenodd"/>')
+    if not overlay:
+        out += water_layers(v)
     if kind == "lake":
         out.append(f'<path d="{v.poly_path(shapes)}" fill="{HI_WATER}" stroke="{COAST}" '
                    f'stroke-width="1" fill-rule="evenodd"/>')
-    out += line_layers(v)
+    if not overlay:
+        out += line_layers(v)
     if kind == "river":
         out.append(f'<path d="{v.line_path(shapes)}" fill="none" stroke="{RIVER}" stroke-width="3.6" '
                    f'stroke-linecap="round" stroke-linejoin="round"/>')
@@ -370,17 +417,27 @@ def render_svg(source, zoom=1.0, span=None, center=None):
             colour = HI_LAND if kind == "area" else RIVER
             out.append(f'<circle cx="{(min(xs) + max(xs)) / 2:.1f}" cy="{(min(ys) + max(ys)) / 2:.1f}" '
                        f'r="{size / 2 + 16:.1f}" fill="none" stroke="{colour}" stroke-width="2.5"/>')
-    out += inset(v, _corner(pix, v.h))
+    if locator:
+        out += inset(v, _corner(pix, v.h))
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{v.h}" '
             f'viewBox="0 0 {W} {v.h}">' + "".join(out) + "</svg>")
 
 
 def render_png(source, **view):
+    return to_png(render_svg(source, **view))
+
+
+def render_continent_png(region, source=None):
+    return to_png(render_continent_svg(region, source), alpha=source is not None)
+
+
+def to_png(svg, alpha=False):
     import cairosvg
     from PIL import Image
 
-    png = cairosvg.svg2png(bytestring=render_svg(source, **view).encode())
-    im = Image.open(io.BytesIO(png)).convert("RGB").quantize(colors=128, method=Image.Quantize.FASTOCTREE)
+    png = cairosvg.svg2png(bytestring=svg.encode())
+    im = Image.open(io.BytesIO(png)).convert("RGBA" if alpha else "RGB")
+    im = im.quantize(colors=128, method=Image.Quantize.FASTOCTREE)
     buf = io.BytesIO()
     im.save(buf, "PNG", optimize=True)
     return buf.getvalue()

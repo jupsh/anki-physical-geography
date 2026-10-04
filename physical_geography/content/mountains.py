@@ -11,12 +11,13 @@ FEATURES = [
     # ------------------------------------------------------------------ Asia
     F("Himalayas", G("HIMALAYAS"), AS,
       "The world's highest range, stretching about 2,400 km across Pakistan, India, Nepal, Bhutan "
-      "and Tibet (China). Home to most of the world's 8,000 m peaks.",
-      "What is the highest peak in the Himalayas (and the world)?", "Mount Everest (8,849 m)"),
+      "and Tibet (China). Home to most of the world's 8,000 m peaks; the highest is Mount Everest "
+      "(8,849 m).",
+      "What is the highest peak in the Himalayas (and the world)?", "Mount Everest"),
     F("Karakoram", G("KARAKORAM RA."), AS,
       "Range northwest of the Himalayas where Pakistan, India and China meet. Has some of the "
-      "longest glaciers outside the polar regions.",
-      "Which peak, the world's second highest, is in the Karakoram?", "K2 (8,611 m)"),
+      "longest glaciers outside the polar regions. The highest peak is K2 (8,611 m).",
+      "Which peak, the world's second highest, is in the Karakoram?", "K2"),
     F("Hindu Kush", G("HINDU KUSH"), AS,
       "Runs about 800 km southwest from the Pamirs into central Afghanistan. Its highest peak, "
       "Tirich Mir, is in Pakistan.",
@@ -33,14 +34,15 @@ FEATURES = [
       "One of Asia's longest ranges, running about 3,000 km across western China.",
       "The Kunlun form the northern edge of which plateau?", "The Tibetan Plateau"),
     F("Altai Mountains", G("ALTAY MOUNTAINS"), AS,
-      "Range in Central Asia, the source of the Ob and Irtysh rivers.",
-      "Which four countries meet in the Altai Mountains?", "Russia, Kazakhstan, Mongolia and China"),
+      "Range in Central Asia where Russia, Kazakhstan, Mongolia and China meet.",
+      "Which two great Siberian rivers rise in the Altai?", "The Ob and the Irtysh"),
     F("Zagros Mountains", G("ZAGROS MOUNTAINS"), AS,
       "Run about 1,600 km southeast from the Turkey–Iraq border region to the Strait of Hormuz.",
       "Which country contains most of the Zagros?", "Iran"),
     F("Alborz (Elburz)", G("ELBURZ MTS."), AS,
-      "Range along the southern coast of the Caspian Sea in northern Iran, just north of Tehran.",
-      "What is the highest peak of the Alborz, a volcano?", "Mount Damavand (5,609 m)"),
+      "Range along the southern coast of the Caspian Sea in northern Iran, just north of Tehran. "
+      "The highest peak is Mount Damavand (5,609 m).",
+      "What is the highest peak of the Alborz, a volcano?", "Mount Damavand"),
     F("Western Ghats", G("WESTERN GHATS"), AS,
       "Run about 1,600 km along India's west coast. They catch heavy monsoon rain and are a "
       "biodiversity hotspot.",
@@ -55,12 +57,12 @@ FEATURES = [
       "Which continental boundary do the Urals mark?", "The boundary between Europe and Asia"),
     F("Caucasus Mountains", G("CAUCASUS MTS."), (EU, AS),
       "Run between the Black and Caspian Seas across Russia, Georgia and Azerbaijan, with the "
-      "Lesser Caucasus extending into Armenia.",
-      "What is the highest peak of the Caucasus, and of Europe?", "Mount Elbrus (5,642 m)"),
+      "Lesser Caucasus extending into Armenia. The highest peak is Mount Elbrus (5,642 m).",
+      "What is the highest peak of the Caucasus, and of Europe?", "Mount Elbrus"),
     F("Alps", G("ALPS"), EU,
       "Arc about 1,200 km across France, Switzerland, Italy, Germany, Liechtenstein, Austria, "
-      "Slovenia and Monaco.",
-      "What is the highest peak in the Alps?", "Mont Blanc (about 4,806 m)"),
+      "Slovenia and Monaco. The highest peak is Mont Blanc (about 4,806 m).",
+      "What is the highest peak in the Alps?", "Mont Blanc"),
     F("Pyrenees", G("PYRENEES"), EU,
       "Run from the Bay of Biscay to the Mediterranean, forming the border between France and "
       "Spain.",
@@ -77,7 +79,7 @@ FEATURES = [
       "Herzegovina and Montenegro to Albania."),
     F("Balkan Mountains", G("Balkan Mts."), EU,
       "Run east–west across Bulgaria to the Black Sea coast.",
-      "Which peninsula is named after these mountains?", "The Balkan Peninsula"),
+      "Which peninsula takes its name from the Balkan Mountains?", "The Balkan Peninsula"),
     F("Scandinavian Mountains", G("KJØLEN MOUNTAINS"), EU,
       "Run about 1,700 km down the Scandinavian Peninsula. Their western side meets the sea in "
       "Norway's fjords.",
@@ -101,15 +103,16 @@ FEATURES = [
       "Old, worn-down range running about 2,400 km from Newfoundland and Quebec to Alabama, "
       "parallel to the Atlantic coast."),
     F("Sierra Nevada", G("SIERRA NEVADA"), NA,
-      "Runs about 650 km through eastern California. Includes Yosemite and Lake Tahoe.",
-      "What is the highest peak in the Sierra Nevada, and in the contiguous US?", "Mount Whitney (4,421 m)"),
+      "Runs about 650 km through eastern California. Includes Yosemite and Lake Tahoe. The "
+      "highest peak is Mount Whitney (4,421 m).",
+      "What is the highest peak in the Sierra Nevada, and in the contiguous US?", "Mount Whitney"),
     F("Cascade Range", G("CASCADE RANGE"), NA,
       "Volcanic range running from British Columbia through Washington and Oregon to northern "
       "California. Includes Mount Rainier.",
       "Which Cascade volcano erupted catastrophically in 1980?", "Mount St. Helens"),
     F("Alaska Range", G("ALASKA RANGE"), NA,
-      "Arc across southern Alaska, north of Anchorage.",
-      "Which peak, the highest in North America, is in the Alaska Range?", "Denali (6,190 m)"),
+      "Arc across southern Alaska, north of Anchorage. The highest peak is Denali (6,190 m).",
+      "Which peak, the highest in North America, is in the Alaska Range?", "Denali"),
     F("Brooks Range", G("BROOKS RANGE"), NA,
       "The northernmost major range in North America, running across northern Alaska into "
       "Canada's Yukon, above the Arctic Circle."),
@@ -121,17 +124,19 @@ FEATURES = [
     # ------------------------------------------------------------------ South America
     F("Andes", G("ANDES"), SA,
       "The world's longest continental range (about 7,000 km), along the west of South America "
-      "through Venezuela, Colombia, Ecuador, Peru, Bolivia, Chile and Argentina.",
-      "What is the highest peak in the Andes, and in the Americas?", "Aconcagua (6,961 m, Argentina)"),
+      "through Venezuela, Colombia, Ecuador, Peru, Bolivia, Chile and Argentina. The highest peak "
+      "is Aconcagua (6,961 m), in Argentina.",
+      "What is the highest peak in the Andes, and in the Americas?", "Aconcagua"),
 
     # ------------------------------------------------------------------ Oceania
     F("Great Dividing Range", G("GREAT DIVIDING RANGE"), OC,
       "Runs about 3,500 km down eastern Australia from Cape York to Victoria, separating the "
-      "coast from the interior.",
-      "What is Australia's highest peak, in the range's southern part?", "Mount Kosciuszko (2,228 m)"),
+      "coast from the interior. The highest peak is Mount Kosciuszko (2,228 m), at its southern end.",
+      "Which peak, Australia's highest, is in the Great Dividing Range?", "Mount Kosciuszko"),
     F("Southern Alps", G("SOUTHERN ALPS"), OC,
-      "Run down the length of New Zealand's South Island.",
-      "What is the highest peak in the Southern Alps and New Zealand?", "Aoraki / Mount Cook (3,724 m)"),
+      "Run down the length of New Zealand's South Island. The highest peak is Aoraki / Mount Cook "
+      "(3,724 m).",
+      "What is the highest peak in the Southern Alps and New Zealand?", "Aoraki / Mount Cook"),
 
     # ------------------------------------------------------------------ Antarctica
     F("Transantarctic Mountains", G("Transantarctic Mountains"), AN,

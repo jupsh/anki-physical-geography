@@ -62,9 +62,10 @@ FEATURES = [
       "Dry region mostly in Nevada and Utah, between the Sierra Nevada and the Wasatch Range.",
       "What is unusual about the Great Basin's rivers?", "None of them reach the sea; they end in lakes or evaporate"),
     F("Colorado Plateau", G("COLORADO PLATEAU"), NA,
-      "High desert of red rock in the US Southwest, cut by the Grand Canyon.",
-      "The Colorado Plateau is centred on the Four Corners. Which four states meet there?",
-      "Arizona, Utah, Colorado and New Mexico"),
+      "High desert of red rock in the US Southwest, cut by the Grand Canyon. Centred on the Four "
+      "Corners, where Arizona, Utah, Colorado and New Mexico meet.",
+      "Which point where four US states meet lies near the centre of the Colorado Plateau?",
+      "The Four Corners"),
 
     # ------------------------------------------------------------------ South America
     F("Amazon Basin", G("AMAZON BASIN"), SA,
@@ -85,7 +86,7 @@ FEATURES = [
       "wet season."),
     F("Gran Chaco", G("GRAN CHACO"), SA,
       "Hot, semi-arid lowland of scrub forest shared by Paraguay, Bolivia and Argentina.",
-      "Which two countries fought the Chaco War over it in the 1930s?", "Bolivia and Paraguay"),
+      "Which two countries fought over the Gran Chaco in the 1930s Chaco War?", "Bolivia and Paraguay"),
     F("Pantanal", G("PANTANAL"), SA,
       "The world's largest tropical wetland, mostly in western Brazil and reaching into Bolivia "
       "and Paraguay."),

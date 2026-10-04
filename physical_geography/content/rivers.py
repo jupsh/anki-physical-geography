@@ -112,8 +112,9 @@ FEATURES = [
       "Into which body of water does the Volga flow?", "The Caspian Sea"),
     F("Danube", R("Danube"), EU,
       "Europe's second-longest river (about 2,850 km). Rises in Germany's Black Forest and passes "
-      "through or along ten countries to a delta in Romania on the Black Sea.",
-      "Which four capital cities stand on the Danube?", "Vienna, Bratislava, Budapest and Belgrade"),
+      "through or along ten countries to a delta in Romania on the Black Sea. Four capitals stand "
+      "on it: Vienna, Bratislava, Budapest and Belgrade.",
+      "Which capital's name joins those of two towns on opposite banks of the Danube?", "Budapest"),
     F("Rhine", R("Rhine", "Rhein", "Rhin"), EU,
       "Flows about 1,230 km from the Swiss Alps through Lake Constance, along the French–German "
       "border and through Germany to the North Sea in the Netherlands.",

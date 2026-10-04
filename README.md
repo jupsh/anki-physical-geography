@@ -21,8 +21,10 @@ then in Anki choose **File → Import**.
 | Peninsulas | 23 |
 | Deserts | 22 |
 
-Each feature has a _Map → Name_ card and a _Name → Map_ card. 148 also have a _Fact_ card: one
-question that ties the feature to countries, seas and cities.
+Each feature has a _Map → Name_ card and a _Name → Map_ card. On the _Name → Map_ card you point
+to the feature on a blank map of its continent; the back highlights it on the same map, so you can
+check exactly where you pointed. 148 features also have a _Fact_ card: one question that ties the
+feature to countries, seas and cities.
 
 <table>
   <tr><th scope="col" colspan="2">Map → Name</th></tr>
@@ -68,6 +70,9 @@ Ultimate Geography's colours, with a world locator in one corner. Each map is ce
 feature (Lambert azimuthal equal-area), so shapes stay true at any latitude. Unlike Ultimate
 Geography's maps, they also show major rivers and the state/province lines of the largest
 countries, faintly, as landmarks.
+
+The _Name → Map_ cards also use a fixed map of each continent, in the same style but without the
+locator.
 
 The outlines of regions like deserts and mountain ranges are Natural Earth's, and some are rough.
 They show where a feature is, not its exact boundary.

@@ -9,8 +9,8 @@ AF, AS, EU, NA, SA, OC = "Africa", "Asia", "Europe", "North America", "South Ame
 FEATURES = [
     # ------------------------------------------------------------------ North America
     F("Lake Superior", L("Superior"), NA,
-      "The largest and deepest of the Great Lakes, shared by the US and Canada.",
-      "What is the largest freshwater lake in the world by area?", "Lake Superior (about 82,000 km²)"),
+      "The largest (about 82,000 km²) and deepest of the Great Lakes, shared by the US and Canada.",
+      "What is the largest freshwater lake in the world by area?", "Lake Superior"),
     F("Lake Michigan", L("Michigan"), NA,
       "One of the Great Lakes. Chicago and Milwaukee are on its shores.",
       "Which Great Lake lies entirely within the United States?", "Lake Michigan"),
@@ -22,7 +22,7 @@ FEATURES = [
       "Water from Lake Erie flows to Lake Ontario over which falls?", "Niagara Falls"),
     F("Lake Ontario", L("Ontario"), NA,
       "The smallest Great Lake by area, and the last before the St. Lawrence River.",
-      "Which major Canadian city stands on Lake Ontario?", "Toronto"),
+      "Which provincial capital lies on Lake Ontario?", "Toronto"),
     F("Great Bear Lake", L("Great Bear"), NA,
       "Lake in Canada's Northwest Territories, on the Arctic Circle.",
       "What is the largest lake entirely within Canada?", "Great Bear Lake"),
@@ -50,14 +50,15 @@ FEATURES = [
       "Which three countries share Lake Victoria?", "Uganda, Kenya and Tanzania"),
     F("Lake Tanganyika", L("Tanganyika"), AF,
       "The world's longest freshwater lake (about 670 km) and second-deepest (about 1,470 m), in "
-      "the Great Rift Valley.",
-      "Which four countries border Lake Tanganyika?", "Tanzania, DR Congo, Burundi and Zambia"),
+      "the Great Rift Valley. Bordered by Tanzania, DR Congo, Burundi and Zambia.",
+      "What is the world's longest freshwater lake?", "Lake Tanganyika"),
     F("Lake Malawi", L("Malawi"), AF,
       "Deep Rift Valley lake with more species of fish than any other lake, most of them cichlids.",
       "Which three countries border Lake Malawi?", "Malawi, Mozambique and Tanzania"),
     F("Lake Chad", L("Chad"), AF,
-      "Shallow lake on the edge of the Sahara. It has shrunk by about 90% since the 1960s.",
-      "Which four countries border Lake Chad?", "Chad, Cameroon, Niger and Nigeria"),
+      "Shallow lake on the edge of the Sahara, bordered by Chad, Cameroon, Niger and Nigeria. It "
+      "has shrunk by about 90% since the 1960s.",
+      "Which river, flowing past N'Djamena, supplies most of Lake Chad's water?", "The Chari"),
     F("Lake Turkana", L("Turkana"), AF,
       "The world's largest permanent desert lake, in the Great Rift Valley. Its northern tip "
       "reaches Ethiopia.",
@@ -68,9 +69,9 @@ FEATURES = [
 
     # ------------------------------------------------------------------ Asia
     F("Lake Baikal", L("Baikal"), AS,
-      "Lake in southern Siberia, Russia. The oldest lake on Earth (about 25 million years) and "
-      "holds about a fifth of the world's unfrozen fresh surface water.",
-      "What is the deepest lake in the world?", "Lake Baikal (about 1,640 m)"),
+      "Lake in southern Siberia, Russia, about 1,640 m deep. The oldest lake on Earth (about 25 "
+      "million years) and holds about a fifth of the world's unfrozen fresh surface water.",
+      "What is the deepest lake in the world?", "Lake Baikal"),
     F("Lake Balkhash", L("Balkhash"), AS,
       "Long lake in southeastern Kazakhstan. Its western half is fresh and its eastern half salty."),
     F("Issyk-Kul", L("Issyk-Kul"), AS,
@@ -87,8 +88,8 @@ FEATURES = [
 
     # ------------------------------------------------------------------ Europe
     F("Lake Ladoga", L("Ladoga"), EU,
-      "Lake in northwestern Russia, near St. Petersburg.",
-      "What is the largest lake in Europe?", "Lake Ladoga (about 17,700 km²)"),
+      "Lake in northwestern Russia, near St. Petersburg, covering about 17,700 km².",
+      "What is the largest lake in Europe?", "Lake Ladoga"),
     F("Lake Onega", L("Onega"), EU,
       "Europe's second-largest lake, in northwestern Russia, east of Lake Ladoga."),
     F("Vänern", L("Vänern"), EU,
@@ -104,6 +105,6 @@ FEATURES = [
     # ------------------------------------------------------------------ Oceania
     F("Lake Eyre (Kati Thanda)", L("Eyre North"), OC,
       "Australia's largest lake when it fills, which is rare; usually a dry salt pan. It is in "
-      "South Australia.",
-      "What is the lowest point in Australia?", "Lake Eyre (about 15 m below sea level)"),
+      "South Australia, about 15 m below sea level.",
+      "What is the lowest point in Australia?", "Lake Eyre"),
 ]

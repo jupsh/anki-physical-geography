@@ -9,8 +9,8 @@ AF, AS, EU, NA, OC, AN = "Africa", "Asia", "Europe", "North America", "Oceania",
 FEATURES = [
     # ------------------------------------------------------------------ Asia
     F("Arabian Peninsula", G("ARABIAN PENINSULA"), AS,
-      "Holds Saudi Arabia, Yemen, Oman, the UAE, Qatar, Kuwait and Bahrain, between the Red Sea "
-      "and the Persian Gulf.",
+      "Holds Saudi Arabia, Yemen, Oman, the UAE, Qatar and Kuwait, between the Red Sea and the "
+      "Persian Gulf. The island country of Bahrain lies just off its east coast.",
       "What is the largest peninsula in the world?", "The Arabian Peninsula"),
     F("Anatolia", G("ANATOLIA"), AS,
       "The Asian part of Turkey, between the Black Sea and the Mediterranean.",

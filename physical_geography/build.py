@@ -42,8 +42,18 @@ CSS = r"""
   color: #b91c1c; margin-bottom: 12px;
 }
 .kind .regions { color: #6b7280; }
-.map img { max-width: 100%; height: auto; border-radius: 10px; border: 1px solid #e5e7eb; }
+.map img {
+  max-width: 100%; height: auto; box-sizing: border-box; border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
 .map { margin: 6px 0 14px; }
+/* Name → Map back: the feature's highlight, a transparent overlay, laid over the blank map */
+.stack { position: relative; display: inline-block; vertical-align: top; }
+.stack img { display: block; }
+.stack img + img {
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  border-color: transparent !important;
+}
 .prompt { color: #6b7280; font-size: .9em; }
 .name { font-size: 1.6em; font-weight: 650; margin: 4px 0 8px; }
 .q { font-size: 1.1em; font-weight: 500; margin: 10px 0; }
@@ -76,9 +86,12 @@ TEMPLATES = [
              '<hr id="answer"><div class="name">{{Name}}</div>' + INFO + '</div>'},
     {"name": "Name → Map",
      "qfmt": '<div class="wrap">' + KIND + '<div class="name">{{Name}}</div>'
-             '<div class="prompt">Where is it?</div></div>',
+             '<div class="map">{{Blank map}}</div>'
+             '<div class="prompt">Point to it on the map.</div></div>',
      "afmt": '<div class="wrap">' + KIND_BACK + '<div class="name">{{Name}}</div>'
-             '<hr id="answer"><div class="map">{{Map}}</div>' + INFO + '</div>'},
+             '<hr id="answer"><div class="map"><div class="stack">{{Blank map}}{{Highlight}}</div></div>'
+             '<div class="map">{{Map}}</div>'
+             + INFO + '</div>'},
     {"name": "Fact",
      "qfmt": '{{#Question}}<div class="wrap">' + KIND + '<div class="q">{{Question}}</div></div>'
              '{{/Question}}',
@@ -89,7 +102,8 @@ TEMPLATES = [
 
 MODEL = genanki.Model(
     MODEL_ID, "Physical Geography",
-    fields=[{"name": n} for n in ("Name", "Kind", "Regions", "Info", "Map", "Question", "Answer")],
+    fields=[{"name": n} for n in ("Name", "Kind", "Regions", "Info", "Map", "Question", "Answer",
+                                  "Blank map", "Highlight")],
     templates=TEMPLATES,
     css=CSS,
     sort_field_index=0,
@@ -126,15 +140,31 @@ RENDER_KEY = hashlib.sha1(
     ((HERE / "maps.py").read_text() + (HERE / "geodata.py").read_text()).encode()).hexdigest()[:10]
 
 
+def src_spec(feat):
+    return (feat.src.__class__.__name__, vars(feat.src))
+
+
 def map_file(feat):
-    """Render (or reuse) the feature's map; returns its path."""
-    spec = repr((feat.src.__class__.__name__, vars(feat.src), sorted(feat.view.items())))
-    key = hashlib.sha1((RENDER_KEY + spec).encode()).hexdigest()[:10]
-    cache = BUILD / "cache" / f"{slug(feat.name)}-{key}.png"
+    """Render (or reuse) the feature's close-up map; returns its path."""
+    return cached(f"pg-map-{slug(feat.name)}", (src_spec(feat), sorted(feat.view.items())),
+                  lambda: maps.render_png(feat.src, **feat.view))
+
+
+def continent_file(region, feat=None):
+    """Render (or reuse) the blank continent map, or the feature's highlight to lay over it."""
+    if feat is None:
+        return cached(f"pg-blank-{slug(region)}", region, lambda: maps.render_continent_png(region))
+    return cached(f"pg-highlight-{slug(feat.name)}", (region, src_spec(feat)),
+                  lambda: maps.render_continent_png(region, feat.src))
+
+
+def cached(name, spec, render):
+    key = hashlib.sha1((RENDER_KEY + repr(spec)).encode()).hexdigest()[:10]
+    cache = BUILD / "cache" / f"{name}-{key}.png"
     if not cache.exists():
         cache.parent.mkdir(parents=True, exist_ok=True)
-        cache.write_bytes(maps.render_png(feat.src, **feat.view))
-    out = BUILD / "media" / f"pg-map-{slug(feat.name)}.png"
+        cache.write_bytes(render())
+    out = BUILD / "media" / f"{name}.png"
     out.parent.mkdir(parents=True, exist_ok=True)
     if not out.exists() or out.read_bytes() != cache.read_bytes():
         out.write_bytes(cache.read_bytes())
@@ -161,15 +191,20 @@ def build(html_out=None, only=None):
             seen.add(feat.name)
             validate(where, feat.name, feat.info, feat.q, feat.a)
             path = map_file(feat)
-            media.append(str(path))
+            blank = continent_file(feat.regions[0])
+            highlight = continent_file(feat.regions[0], feat)
+            media += [str(path), str(highlight)]
+            if str(blank) not in media:
+                media.append(str(blank))
             fields = [feat.name, mod.KIND, ", ".join(feat.regions), feat.info,
-                      f'<img src="{path.name}">', feat.q, feat.a]
+                      f'<img src="{path.name}">', feat.q, feat.a,
+                      f'<img src="{blank.name}">', f'<img src="{highlight.name}">']
             tags = [f"PG::{slug(mod.DECK).title()}"] + [f"PG::{r.replace(' ', '_')}" for r in feat.regions]
             due += 1
             deck.add_note(genanki.Note(model=MODEL, fields=fields, tags=tags,
                                        guid=genanki.guid_for("pg", mod.KIND, feat.name), due=due))
             counts[mod.DECK] = counts.get(mod.DECK, 0) + 1
-            preview.append((fields, path))
+            preview.append((fields, (path, blank, highlight)))
             print(f"\r{len(seen)} maps", end="", flush=True)
     print()
 
@@ -190,12 +225,15 @@ def write_preview(path, preview):
     import shutil
     path.parent.mkdir(parents=True, exist_ok=True)
     rows = []
-    for (name, kind, regions, info, img, q, a), src in preview:
-        shutil.copy(src, path.parent / src.name)
+    for (name, kind, regions, info, img, q, a, blank, highlight), srcs in preview:
+        for src in srcs:
+            shutil.copy(src, path.parent / src.name)
         fact = f'<div class="q">{q}</div><div class="a">{a}</div>' if q else ""
         rows.append(f'<div class="wrap" style="border-bottom:6px solid #ddd">'
                     f'<div class="kind">{kind} <span class="regions">· {regions}</span></div>'
-                    f'<div class="map">{img}</div><div class="name">{name}</div>'
+                    f'<div class="map">{img}</div>'
+                    f'<div class="map"><div class="stack">{blank}{highlight}</div></div>'
+                    f'<div class="name">{name}</div>'
                     f'<div class="info">{info}</div>{fact}</div>')
     path.write_text("<!doctype html><html><head><meta charset='utf-8'>"
                     f"<style>{CSS}</style></head><body class='card'>" + "".join(rows) + "</body></html>")
