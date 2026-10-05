@@ -47,13 +47,12 @@ CSS = r"""
   border: 1px solid #e5e7eb;
 }
 .map { margin: 6px 0 14px; }
-/* Name → Map back: the feature's highlight, a transparent overlay, laid over the blank map */
-.stack { position: relative; display: inline-block; vertical-align: top; }
-.stack img { display: block; }
-.stack img + img {
-  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
-  border-color: transparent !important;
-}
+/* Name → Map back: the feature's highlight, a transparent overlay, laid over the blank map. Both
+   images share one grid cell and size themselves by the same rules, so they stay aligned however
+   the app sizes the cell (Anki caps images at 95vh, which shrinks them inside it). */
+.stack { display: inline-grid; vertical-align: top; }
+.stack img { grid-area: 1 / 1; justify-self: center; align-self: start; }
+.stack img + img { border-color: transparent !important; }
 .prompt { color: #6b7280; font-size: .9em; }
 .name { font-size: 1.6em; font-weight: 650; margin: 4px 0 8px; }
 .q { font-size: 1.1em; font-weight: 500; margin: 10px 0; }

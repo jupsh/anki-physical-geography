@@ -10,17 +10,20 @@ FEATURES = [
     # ------------------------------------------------------------------ Africa
     F("Sahara", G("SAHARA"), AF,
       "The world's largest hot desert (about 9 million km²), covering most of North Africa from "
-      "the Atlantic to the Red Sea.",
-      "What is the semi-arid belt along the Sahara's southern edge called?", "The Sahel"),
+      "the Atlantic to the Red Sea. The Sahel borders it to the south. Its highest peak, Emi "
+      "Koussi (3,415 m), is in Chad's Tibesti Mountains.",
+      "What is the world's largest hot desert?", "The Sahara"),
     F("Nubian Desert", G("NUBIAN DESERT"), AF,
       "Eastern part of the Sahara in northeastern Sudan, between the Nile and the Red Sea."),
     F("Kalahari", G("KALAHARI DESERT"), AF,
-      "Semi-arid sandy savanna covering most of Botswana and parts of Namibia and South Africa.",
-      "Which great inland river delta lies in the northern Kalahari?", "The Okavango Delta"),
+      "Semi-arid sandy savanna covering most of Botswana and parts of Namibia and South Africa. "
+      "The Okavango Delta lies in its north.",
+      "Which country does the Kalahari cover most of?", "Botswana"),
     F("Namib", G("NAMIB DESERT"), AF,
-      "Coastal desert along the Atlantic coast of Namibia, reaching into Angola and South Africa. "
-      "Possibly the world's oldest desert, with some of its tallest dunes.",
-      "Which cold ocean current helps keep the Namib dry?", "The Benguela Current"),
+      "Coastal desert along the Atlantic, reaching into Angola and South Africa. Possibly the "
+      "world's oldest desert, with some of its tallest dunes. The cold Benguela Current helps keep "
+      "it dry.",
+      "Along which country's coast does the Namib run?", "Namibia"),
     F("Danakil Desert", G("Danakil"), AF,
       "Lowland desert in the Afar region of Ethiopia, Eritrea and Djibouti. Parts lie over 100 m "
       "below sea level, and it is one of the hottest places on Earth."),
@@ -41,18 +44,19 @@ FEATURES = [
       "first dinosaur eggs to be recognised as such.",
       "Which two countries does the Gobi span?", "Mongolia and China"),
     F("Taklamakan", G("TAKLIMAKAN DESERT"), AS,
-      "Sand desert in Xinjiang, western China, ringed by the Tian Shan and Kunlun Mountains. The "
-      "Silk Road split to pass around its edges.",
-      "Which basin does the Taklamakan fill?", "The Tarim Basin"),
+      "Sand desert filling the Tarim Basin in Xinjiang, western China, ringed by the Tian Shan and "
+      "Kunlun Mountains.",
+      "Which ancient trade route split to pass around the Taklamakan?", "The Silk Road"),
     F("Karakum", G("GARAGUM DESERT"), AS,
       "Sand desert east of the Caspian Sea. Home to the Darvaza gas crater, the \"Door to Hell\".",
       "Which country does the Karakum cover about 70% of?", "Turkmenistan"),
     F("Kyzylkum", G("QIZILQUM DESERT"), AS,
-      "Desert in Uzbekistan and Kazakhstan, southeast of the Aral Sea. The name means \"red sand\".",
-      "Between which two rivers does the Kyzylkum lie?", "The Amu Darya and the Syr Darya"),
+      "Desert in Uzbekistan and Kazakhstan, between the Amu Darya and the Syr Darya, southeast of "
+      "the Aral Sea.",
+      "What does \"Kyzylkum\" mean?", "\"Red sand\""),
     F("Thar Desert", G("THAR DESERT"), AS,
-      "The Great Indian Desert, on the India–Pakistan border.",
-      "Which Indian state contains most of the Thar?", "Rajasthan"),
+      "The Great Indian Desert. Most of it is in the Indian state of Rajasthan.",
+      "Which two countries share the Thar Desert?", "India and Pakistan"),
     F("Dasht-e Lut", G("LUT DESERT"), AS,
       "Desert in southeastern Iran. Satellites have measured some of the hottest ground "
       "temperatures on Earth here, above 70 °C."),

@@ -18,17 +18,18 @@ FEATURES = [
       "The second-largest Great Lake, shared by the US and Canada. Includes Georgian Bay.",
       "Which Great Lake is joined to Lake Michigan by the Straits of Mackinac?", "Lake Huron"),
     F("Lake Erie", L("Erie"), NA,
-      "The shallowest of the Great Lakes, shared by the US and Canada.",
-      "Water from Lake Erie flows to Lake Ontario over which falls?", "Niagara Falls"),
+      "Shared by the US and Canada. Its water flows to Lake Ontario over Niagara Falls.",
+      "Which is the shallowest of the Great Lakes?", "Lake Erie"),
     F("Lake Ontario", L("Ontario"), NA,
-      "The smallest Great Lake by area, and the last before the St. Lawrence River.",
-      "Which provincial capital lies on Lake Ontario?", "Toronto"),
+      "The last of the Great Lakes before the St. Lawrence River. Toronto stands on its shore.",
+      "Which is the smallest Great Lake by area?", "Lake Ontario"),
     F("Great Bear Lake", L("Great Bear"), NA,
       "Lake in Canada's Northwest Territories, on the Arctic Circle.",
       "What is the largest lake entirely within Canada?", "Great Bear Lake"),
     F("Great Slave Lake", L("Great Slave"), NA,
-      "Lake in Canada's Northwest Territories, and the deepest lake in North America (about 614 m).",
-      "Which river flows out of Great Slave Lake?", "The Mackenzie"),
+      "Lake in Canada's Northwest Territories, about 614 m deep. Yellowknife stands on its shore, "
+      "and the Mackenzie flows out of it.",
+      "What is the deepest lake in North America?", "Great Slave Lake"),
     F("Lake Winnipeg", L("Winnipeg"), NA,
       "Large, shallow lake in Manitoba, Canada. It drains through the Nelson River to Hudson Bay."),
     F("Great Salt Lake", L("Great Salt"), NA,
@@ -56,16 +57,17 @@ FEATURES = [
       "Deep Rift Valley lake with more species of fish than any other lake, most of them cichlids.",
       "Which three countries border Lake Malawi?", "Malawi, Mozambique and Tanzania"),
     F("Lake Chad", L("Chad"), AF,
-      "Shallow lake on the edge of the Sahara, bordered by Chad, Cameroon, Niger and Nigeria. It "
-      "has shrunk by about 90% since the 1960s.",
-      "Which river, flowing past N'Djamena, supplies most of Lake Chad's water?", "The Chari"),
+      "Shallow lake on the edge of the Sahara, bordered by Chad, Cameroon, Niger and Nigeria. The "
+      "Chari, flowing past N'Djamena, supplies most of its water.",
+      "Which African lake has shrunk by about 90% since the 1960s?", "Lake Chad"),
     F("Lake Turkana", L("Turkana"), AF,
       "The world's largest permanent desert lake, in the Great Rift Valley. Its northern tip "
       "reaches Ethiopia.",
       "Which country contains most of Lake Turkana?", "Kenya"),
     F("Lake Tana", L("Tana"), AF,
-      "Ethiopia's largest lake, in the Ethiopian Highlands.",
-      "Which river flows out of Lake Tana?", "The Blue Nile"),
+      "Lake in the Ethiopian Highlands and the source of the Blue Nile. The city of Bahir Dar "
+      "stands on its southern shore.",
+      "What is Ethiopia's largest lake?", "Lake Tana"),
 
     # ------------------------------------------------------------------ Asia
     F("Lake Baikal", L("Baikal"), AS,

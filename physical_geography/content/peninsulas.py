@@ -31,8 +31,9 @@ FEATURES = [
       "The easternmost peninsula of Asia, in Russia's far northeast.",
       "Which strait separates the Chukchi Peninsula from Alaska?", "The Bering Strait"),
     F("Taymyr Peninsula", G("TAYMYR PENINSULA"), AS,
-      "Arctic peninsula in north-central Siberia, between the Kara and Laptev Seas.",
-      "What is the northernmost point of mainland Eurasia, at the tip of the Taymyr?", "Cape Chelyuskin"),
+      "Arctic peninsula in north-central Siberia. Its tip, Cape Chelyuskin, is the northernmost "
+      "point of mainland Eurasia.",
+      "Between which two seas does the Taymyr Peninsula lie?", "The Kara Sea and the Laptev Sea"),
     F("Yamal Peninsula", G("YAMAL PENINSULA"), AS,
       "Arctic peninsula in northwestern Siberia with some of the world's largest natural gas "
       "reserves. Home of the reindeer-herding Nenets people.",
@@ -51,8 +52,9 @@ FEATURES = [
       "Annexed by Russia in 2014.",
       "Which sea lies northeast of Crimea?", "The Sea of Azov"),
     F("Kola Peninsula", G("KOLA PENINSULA"), EU,
-      "Russian peninsula in the far northwest, between the Barents and White Seas.",
-      "Which ice-free Arctic port stands at the base of the Kola Peninsula?", "Murmansk"),
+      "Russian peninsula in the far northwest. The ice-free Arctic port of Murmansk stands at its "
+      "base.",
+      "Which two seas border the Kola Peninsula?", "The Barents Sea and the White Sea"),
     F("Peloponnese", G("Pelopónnisos"), EU,
       "Southern part of mainland Greece, home of ancient Sparta and Olympia.",
       "What joins (and, since a canal was cut, separates) the Peloponnese and the Greek mainland?",
@@ -80,8 +82,10 @@ FEATURES = [
       "Peninsula in the southeastern US, between the Gulf of Mexico and the Atlantic. The "
       "Everglades wetland covers much of its southern tip."),
     F("Alaska Peninsula", G("ALASKA PENINSULA"), NA,
-      "Extends about 800 km southwest from mainland Alaska, between the Pacific and the Bering Sea.",
-      "Which island chain continues the line of the Alaska Peninsula?", "The Aleutian Islands"),
+      "Extends about 800 km southwest from mainland Alaska. The Aleutian Islands continue its "
+      "line.",
+      "Which two bodies of water does the Alaska Peninsula separate?",
+      "The Pacific Ocean and the Bering Sea"),
 
     # ------------------------------------------------------------------ Oceania
     F("Cape York Peninsula", G("CAPE YORK PEN."), OC,

@@ -53,6 +53,12 @@ This follows Ultimate Geography's
 - Ask for one thing, or at most a pair or three. Put longer lists (the capitals on the Danube) in
   the info text and ask about one of them instead.
 - Answer only what was asked. Elevations, areas and other figures go in the info text.
+- Ask about the feature itself. The fact card's back shows that feature's map and info, so the
+  answer must be either the feature or something about it (its other name, what its name means,
+  where it flows), or a country, capital, sea or strait the learner knows from Ultimate
+  Geography. Don't answer with another place the back doesn't show: a city, peak, range, basin,
+  waterfall or dam ("the Tibesti Mountains" on the Sahara's card). Put those in the info text,
+  or turn the question round: "Which range holds Denali?"
 
 ## Versioning and releases
 
