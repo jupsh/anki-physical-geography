@@ -11,7 +11,7 @@ FEATURES = [
     F("Tibetan Plateau", G("PLATEAU OF TIBET"), AS,
       "The world's highest and largest plateau, averaging over 4,500 m. The Yangtze, Yellow, "
       "Mekong, Indus and Brahmaputra all rise here.",
-      "What nickname does the Tibetan Plateau share with the Pamirs?", "The \"Roof of the World\""),
+      "What is the world's highest and largest plateau?", "The Tibetan Plateau"),
     F("Deccan Plateau", G("DECCAN PLATEAU"), AS,
       "Lies between the Western and Eastern Ghats. Ancient lava flows, the Deccan Traps, cover its "
       "northwest.",
@@ -21,7 +21,8 @@ FEATURES = [
       "Gobi lies on it."),
     F("Mesopotamia", G("Mesopotamia"), AS,
       "Lowland of modern Iraq, home to Sumer, Babylon and some of the earliest cities and writing.",
-      "What does \"Mesopotamia\" mean in Greek?", "\"Between the rivers\" (the Tigris and Euphrates)"),
+      "Mesopotamia, between the Tigris and Euphrates, lies mostly in which modern country?",
+      "Iraq"),
     F("Sichuan Basin", G("SICHUAN BASIN"), AS,
       "Fertile, densely populated basin, ringed by mountains. Chengdu and Chongqing are in it.",
       "Which fertile, mountain-ringed basin lies in southwestern China?", "The Sichuan Basin"),
@@ -32,21 +33,44 @@ FEATURES = [
       "The West Siberian Plain"),
     F("Central Siberian Plateau", G("CENTRAL SIBERIAN PLATEAU"), AS,
       "Vast upland of forest and permafrost in Siberia, between the Yenisei and the Lena.",
-      "What huge explosion flattened forest on the Central Siberian Plateau in 1908?",
-      "The Tunguska event"),
+      "Which vast upland of forest and permafrost lies between the Yenisei and the Lena?",
+      "The Central Siberian Plateau"),
     F("Kazakh Steppe", G("KAZAKH STEPPE"), AS,
       "The world's largest dry steppe region, a grassland across northern and central Kazakhstan."),
+    F("Tarim Basin", G("TARIM BASIN"), AS,
+      "Large endorheic basin in Xinjiang, western China, filled by the Taklamakan Desert and "
+      "ringed by the Tian Shan, Pamirs and Kunlun. The Tarim River runs along its north.",
+      "Which basin does the Taklamakan Desert fill?", "The Tarim Basin"),
+    F("Loess Plateau", G("Loess Plateau"), AS,
+      "Plateau in north-central China blanketed in wind-blown loess silt, cut by deep gullies. "
+      "The Yellow River picks up most of its silt here.",
+      "From which plateau does the Yellow River pick up most of its silt?", "The Loess Plateau"),
+    F("North China Plain", G("NORTH CHINA PLAIN"), AS,
+      "One of the most densely populated plains on Earth, built by Yellow River silt. Beijing "
+      "stands at its northern edge and the Grand Canal crosses it.",
+      "Which capital city stands at the northern edge of the North China Plain?", "Beijing"),
+    F("Turan Lowland", G("TURAN LOWLAND"), AS,
+      "Vast lowland of Central Asia east of the Caspian Sea, covering much of Turkmenistan, "
+      "Uzbekistan and southern Kazakhstan. The Karakum and Kyzylkum deserts lie in it."),
+    F("Ganges Plain", G("GANGES PLAIN"), AS,
+      "Fertile, densely populated plain of the Ganges and its tributaries across northern "
+      "India and Bangladesh, between the Himalayas and the Deccan Plateau."),
 
     # ------------------------------------------------------------------ Europe
     F("North European Plain", G("NORTHERN EUROPEAN PLAIN"), EU,
       "Lowland stretching from Belgium and the Netherlands through northern Germany and Poland "
       "towards Russia. Its flat, open ground has been a route for armies for centuries."),
+    F("Pontic Steppe", G("PONTIC STEPPE"), (EU, AS),
+      "The western end of the Eurasian steppe, grassland north of the Black and Caspian Seas "
+      "across Ukraine and southern Russia towards Kazakhstan. Historic homeland of Cossacks "
+      "and of horse nomads such as the Scythians.",
+      "North of which two seas does the Pontic Steppe lie?", "The Black Sea and the Caspian Sea"),
 
     # ------------------------------------------------------------------ Africa
     F("Sahel", G("SAHEL"), AF,
       "Semi-arid belt between the Sahara and the savannas to the south, stretching from Senegal "
       "to Sudan.",
-      "What does \"Sahel\" mean in Arabic?", "\"Shore\" (of the Sahara)"),
+      "Which semi-arid belt south of the Sahara stretches from Senegal to Sudan?", "The Sahel"),
     F("Ethiopian Highlands", G("ETHIOPIAN HIGHLANDS"), AF,
       "Africa's largest area of high ground, sometimes called the \"Roof of Africa\". The Blue "
       "Nile rises here.",
@@ -59,12 +83,17 @@ FEATURES = [
       "African branches hold Lakes Turkana, Tanganyika and Malawi."),
 
     # ------------------------------------------------------------------ North America
+    F("Canadian Shield", G("CANADIAN SHIELD"), NA,
+      "A vast expanse of ancient, exposed Precambrian rock around Hudson Bay, covering about "
+      "half of Canada and reaching into the northern US. Its scraped, lake-dotted surface was "
+      "shaped by ice-age glaciers.",
+      "Around which bay is the Canadian Shield centred?", "Hudson Bay"),
     F("Great Plains", G("GREAT PLAINS"), NA,
       "Vast, flat grassland east of the Rocky Mountains, from Canada's Prairie Provinces to Texas. "
       "Now largely farmland."),
     F("Great Basin", G("GREAT BASIN"), NA,
       "Dry region mostly in Nevada and Utah, between the Sierra Nevada and the Wasatch Range.",
-      "What is unusual about the Great Basin's rivers?", "None of them reach the sea; they end in lakes or evaporate"),
+      "Which dry region in Nevada and Utah has no river that reaches the sea?", "The Great Basin"),
     F("Colorado Plateau", G("COLORADO PLATEAU"), NA,
       "High desert of red rock in the US Southwest, cut by the Grand Canyon. Centred on the Four "
       "Corners, where Arizona, Utah, Colorado and New Mexico meet."),
@@ -87,9 +116,14 @@ FEATURES = [
     F("Llanos", G("LLANOS"), SA,
       "Tropical grassland plains of the Orinoco basin in Venezuela and Colombia, flooded each "
       "wet season."),
+    F("Caatinga", G("CAATINGAS"), SA,
+      "Semi-arid scrub and dry forest in northeastern Brazil, between the Amazon and the "
+      "Atlantic. Its name is Tupi for \"white forest\", from the pale, leafless trees of the "
+      "dry season.",
+      "What is the semi-arid dry forest of northeastern Brazil called?", "The Caatinga"),
     F("Gran Chaco", G("GRAN CHACO"), SA,
       "Hot, semi-arid lowland of scrub forest shared by Paraguay, Bolivia and Argentina.",
-      "Which two countries fought over the Gran Chaco in the 1930s Chaco War?", "Bolivia and Paraguay"),
+      "The Gran Chaco is shared by Paraguay, Bolivia and which third country?", "Argentina"),
     F("Pantanal", G("PANTANAL"), SA,
       "The world's largest tropical wetland, mostly in western Brazil and reaching into Bolivia "
       "and Paraguay."),
@@ -102,9 +136,18 @@ FEATURES = [
       "Which two countries share Patagonia?", "Argentina and Chile"),
 
     # ------------------------------------------------------------------ Oceania
+    F("Western Plateau", G("WESTERN PLATEAU"), OC,
+      "A vast, old plateau covering most of western and central Australia. The Great Sandy, "
+      "Gibson and Great Victoria Deserts and the Nullarbor Plain all lie on it."),
+    F("Murray-Darling Basin", G("MURRAY-DARLING BASIN"), OC,
+      "Drainage basin of the Murray and Darling rivers, covering about a seventh of Australia "
+      "in the southeast interior. It produces a large share of the country's farm output.",
+      "Which basin drains about a seventh of Australia through the Murray and Darling?",
+      "The Murray-Darling Basin"),
     F("Nullarbor Plain", G("NULLARBOR PLAIN"), OC,
       "Flat, almost treeless limestone plain along the Great Australian Bight.",
-      "What does \"Nullarbor\" mean?", "\"No tree\" (Latin <i>nulla arbor</i>)"),
+      "Which almost treeless limestone plain lies along the Great Australian Bight?",
+      "The Nullarbor Plain"),
     F("Great Artesian Basin", G("GREAT ARTESIAN BASIN"), OC,
       "The world's largest and deepest artesian basin, an underground water store beneath about "
       "a fifth of Australia."),

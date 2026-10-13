@@ -25,8 +25,8 @@ ROOT = HERE.parent
 BUILD = ROOT / "build" / "physical_geography"
 DIST = ROOT / "dist"
 DECK_ROOT = "Physical Geography"
-MODULES = ["content.rivers", "content.mountains", "content.deserts", "content.lakes",
-           "content.lands", "content.peninsulas"]
+MODULES = ["content.rivers", "content.mountains", "content.volcanoes", "content.deserts",
+           "content.lakes", "content.lands", "content.peninsulas"]
 
 MODEL_ID = 1730418265
 
@@ -109,8 +109,8 @@ MODEL = genanki.Model(
 )
 
 DECK_DESCRIPTION = (
-    "Rivers, mountain ranges, deserts, lakes, plateaus, plains and peninsulas of the world: a "
-    "companion to Ultimate Geography, with maps in the same style. Each feature has a "
+    "Rivers, mountain ranges, volcanoes, deserts, lakes, plateaus, plains and peninsulas of the "
+    "world: a companion to Ultimate Geography, with maps in the same style. Each feature has a "
     "Map → Name card, a Name → Map card and, for most, a fact card. Map data: "
     "<a href='https://www.naturalearthdata.com/'>Natural Earth</a> (public domain)."
 )

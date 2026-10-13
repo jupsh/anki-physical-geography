@@ -49,6 +49,31 @@ FEATURES = [
       "Run about 1,600 km along India's west coast. They catch heavy monsoon rain and are a "
       "biodiversity hotspot. The lower Eastern Ghats run along the east coast.",
       "Along which sea do the Western Ghats run?", "The Arabian Sea"),
+    F("Pontic Mountains", G("PONTIC MOUNTAINS"), AS,
+      "Run about 1,000 km along Turkey's Black Sea coast, rising steeply from the shore and "
+      "catching its rain. Tea and hazelnuts grow on their lower slopes.",
+      "Along which sea do the Pontic Mountains run?", "The Black Sea"),
+    F("Kopet Dag", G("Kopet Dag Mts ."), AS,
+      "Range on the Turkmenistan–Iran border, northeast of the Caspian Sea. Ashgabat stands "
+      "at its foot.",
+      "The Kopet Dag forms the border between which two countries?", "Turkmenistan and Iran"),
+    F("Verkhoyansk Range", G("VERKHOYANSK RANGE"), AS,
+      "Long arc in northeastern Siberia, east of the Lena. Winters near it, around Verkhoyansk "
+      "and Oymyakon, are among the coldest in the inhabited world.",
+      "Which Siberian range stands near Verkhoyansk and Oymyakon, among the coldest inhabited "
+      "places on Earth?", "The Verkhoyansk Range"),
+    F("Sikhote-Alin Range", G("SIKHOTE-ALIN’ RANGE"), AS,
+      "Runs about 900 km along Russia's Pacific coast, inland from Vladivostok. A large "
+      "meteorite fell in it in 1947.",
+      "Along which country's Pacific coast does the Sikhote-Alin Range run?", "Russia"),
+    F("Eastern Ghats", G("EASTERN GHATS"), AS,
+      "Broken chain of hills along India's east coast, lower and older than the Western Ghats. "
+      "The Godavari, Krishna and Kaveri cut through it to the Bay of Bengal.",
+      "Along which bay do the Eastern Ghats run?", "The Bay of Bengal"),
+    F("Barisan Mountains", G("Barisan Mountains"), AS,
+      "Run the length of Sumatra, parallel to its southwest coast. They hold many active "
+      "volcanoes, including Mount Kerinci.",
+      "In which country are the Barisan Mountains?", "Indonesia"),
     F("Annamite Range", G("CHAÎNE ANNAMITIQUE"), AS,
       "Run about 1,100 km through Indochina, between the Mekong valley and the South China Sea coast.",
       "The Annamite Range follows the border between which two countries?", "Laos and Vietnam"),
@@ -64,11 +89,12 @@ FEATURES = [
     F("Alps", G("ALPS"), EU,
       "Arc about 1,200 km across France, Switzerland, Italy, Germany, Liechtenstein, Austria, "
       "Slovenia and Monaco. The highest peak is Mont Blanc (about 4,806 m).",
-      "Which microstate lies entirely in the Alps?", "Liechtenstein"),
+      "Which range arcs across France, Switzerland, Italy and Austria and holds Mont Blanc?",
+      "The Alps"),
     F("Pyrenees", G("PYRENEES"), EU,
       "Run from the Bay of Biscay to the Mediterranean, forming the border between France and "
       "Spain.",
-      "Which microstate lies in the Pyrenees?", "Andorra"),
+      "Which range forms the border between France and Spain?", "The Pyrenees"),
     F("Apennines", G("APPENNINI"), EU,
       "The backbone of Italy, running about 1,200 km down the length of the peninsula. The "
       "highest peak is Corno Grande (2,912 m) in the Gran Sasso."),
@@ -81,7 +107,11 @@ FEATURES = [
       "Herzegovina and Montenegro to Albania."),
     F("Balkan Mountains", G("Balkan Mts."), EU,
       "Run east–west across Bulgaria to the Black Sea coast.",
-      "Which peninsula takes its name from the Balkan Mountains?", "The Balkan Peninsula"),
+      "Which range runs east–west across Bulgaria to the Black Sea?", "The Balkan Mountains"),
+    F("Massif Central", G("Massif Central"), EU,
+      "Ancient volcanic upland in south-central France, between the Rhône and the plains of "
+      "the west. The Loire and several other French rivers rise in it.",
+      "Which upland in south-central France is the source of the Loire?", "The Massif Central"),
     F("Scandinavian Mountains", G("KJØLEN MOUNTAINS"), EU,
       "Run about 1,700 km down the Scandinavian Peninsula. Their western side meets the sea in "
       "Norway's fjords.",
@@ -92,6 +122,19 @@ FEATURES = [
       "Stretch about 2,500 km across Morocco, Algeria and Tunisia. The highest peak is Toubkal "
       "(4,167 m). The Sahara lies to the south.",
       "Which three countries do the Atlas Mountains cross?", "Morocco, Algeria and Tunisia"),
+    F("Tibesti Mountains", G("TIBESTI MTS."), AF,
+      "Volcanic massif in the central Sahara, in northern Chad and southern Libya. Its highest "
+      "peak, Emi Koussi (3,415 m), is the highest point in the Sahara.",
+      "Which massif holds Emi Koussi, the highest point in the Sahara?", "The Tibesti Mountains"),
+    F("Ahaggar Mountains", G("AHAGGAR MTS."), AF,
+      "High volcanic plateau in the Sahara of southern Algeria, also called the Hoggar. Its "
+      "highest peak is Mount Tahat (2,908 m).",
+      "In which country are the Ahaggar Mountains?", "Algeria"),
+    F("Ruwenzori Range", G("Ruwenzori Range"), AF,
+      "Small, high range on the Uganda–DR Congo border, the legendary \"Mountains of the Moon\". "
+      "Its glaciers sit almost on the Equator. The highest peak is Mount Stanley (5,109 m).",
+      "The Ruwenzori Range forms the border between which two countries?",
+      "Uganda and DR Congo", span=1700),
     F("Drakensberg", G("DRAKENSBERG"), AF,
       "The highest part of the escarpment along southern Africa's eastern edge, rising to "
       "3,482 m.",
@@ -121,6 +164,14 @@ FEATURES = [
       "Canada's Yukon, above the Arctic Circle."),
     F("Sierra Madre Occidental", G("SIERRA MADRE OCCIDENTAL"), NA,
       "Runs about 1,250 km down western Mexico, parallel to the Pacific and the Gulf of California."),
+    F("Coast Mountains", G("COAST MOUNTAINS"), NA,
+      "Run about 1,600 km along the Pacific coast of British Columbia into the Alaska "
+      "Panhandle, cut by fjords. Mount Waddington (4,019 m) is their highest peak.",
+      "In which country are most of the Coast Mountains?", "Canada"),
+    F("Sierra Madre del Sur", G("Sierra Madre del Sur"), NA,
+      "Runs about 1,000 km along Mexico's Pacific coast, through Guerrero and Oaxaca, south "
+      "of the main Sierra Madre ranges.",
+      "Along which ocean does the Sierra Madre del Sur run?", "The Pacific Ocean"),
     F("Sierra Madre Oriental", G("SIERRA MADRE ORIENTAL"), NA,
       "Runs about 1,000 km down eastern Mexico, parallel to the Gulf of Mexico."),
 
@@ -132,6 +183,10 @@ FEATURES = [
       "Which range holds Aconcagua, the highest peak in the Americas?", "The Andes"),
 
     # ------------------------------------------------------------------ Oceania
+    F("New Guinea Highlands", G("NEW GUINEA HIGHLANDS"), OC,
+      "Chain of ranges down the centre of New Guinea, shared by Indonesia and Papua New "
+      "Guinea. Puncak Jaya (4,884 m), the highest peak in Oceania, rises at its western end.",
+      "Which highlands hold Puncak Jaya, the highest peak in Oceania?", "The New Guinea Highlands"),
     F("Great Dividing Range", G("GREAT DIVIDING RANGE"), OC,
       "Runs about 3,500 km down eastern Australia from Cape York to Victoria, separating the coast "
       "from the interior. The highest peak is Mount Kosciuszko (2,228 m), at its southern end.",

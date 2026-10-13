@@ -1,4 +1,5 @@
 from features import F
+from geodata import Polygon
 from geodata import Region as G
 
 KIND = "Desert"
@@ -32,7 +33,7 @@ FEATURES = [
     F("Rub' al Khali", G("RUB’ AL KHALI"), AS,
       "The largest continuous sand desert in the world, covering southern Saudi Arabia and parts "
       "of Oman, the UAE and Yemen.",
-      "What does \"Rub' al Khali\" mean?", "The Empty Quarter"),
+      "What is the largest continuous sand desert in the world?", "The Rub' al Khali"),
     F("Syrian Desert", G("SYRIAN DESERT"), AS,
       "Stony desert covering parts of Syria, Jordan, Iraq and Saudi Arabia, between the "
       "Euphrates valley and the Levant."),
@@ -46,14 +47,14 @@ FEATURES = [
     F("Taklamakan", G("TAKLIMAKAN DESERT"), AS,
       "Sand desert filling the Tarim Basin in Xinjiang, western China, ringed by the Tian Shan and "
       "Kunlun Mountains.",
-      "Which ancient trade route split to pass around the Taklamakan?", "The Silk Road"),
+      "What is China's largest desert?", "The Taklamakan"),
     F("Karakum", G("GARAGUM DESERT"), AS,
       "Sand desert east of the Caspian Sea. Home to the Darvaza gas crater, the \"Door to Hell\".",
       "Which country does the Karakum cover about 70% of?", "Turkmenistan"),
     F("Kyzylkum", G("QIZILQUM DESERT"), AS,
       "Desert in Uzbekistan and Kazakhstan, between the Amu Darya and the Syr Darya, southeast of "
       "the Aral Sea.",
-      "What does \"Kyzylkum\" mean?", "\"Red sand\""),
+      "Between which two rivers does the Kyzylkum lie?", "The Amu Darya and the Syr Darya"),
     F("Thar Desert", G("THAR DESERT"), AS,
       "The Great Indian Desert. Most of it is in the Indian state of Rajasthan.",
       "Which two countries share the Thar Desert?", "India and Pakistan"),
@@ -63,11 +64,24 @@ FEATURES = [
     F("Dasht-e Kavir", G("Kavir Desert"), AS,
       "The \"Great Salt Desert\" of central Iran, a plateau of salt crusts and marshes."),
 
+    F("An Nafud", G("An Nafud Desert"), AS,
+      "A sea of red sand dunes in the north of Saudi Arabia, crossed by pilgrim and trade "
+      "routes to Jordan and Iraq."),
+
     # ------------------------------------------------------------------ North America
+    # Natural Earth has no Mojave polygon; this outline follows the ecoregion's mapped
+    # edges (Sierra Nevada / Tehachapi, Colorado River, San Bernardino Mountains).
+    F("Mojave Desert", Polygon((-118.6, 35.4), (-118.2, 36.8), (-117.0, 37.8), (-115.9, 38.7),
+                               (-114.1, 36.9), (-114.6, 35.1), (-114.5, 33.6), (-114.7, 32.7),
+                               (-115.3, 33.4), (-116.3, 33.9), (-117.3, 34.3), (-118.4, 34.6)), NA,
+      "High desert in southeastern California, southern Nevada and northwestern Arizona, "
+      "between the Sierra Nevada and the Colorado River. Death Valley, the lowest point in "
+      "North America, lies at its northern edge. Joshua trees grow in its western part.",
+      "Which desert holds Death Valley, the lowest point in North America?", "The Mojave Desert"),
     F("Sonoran Desert", G("SONORAN DESERT"), NA,
       "Desert in Arizona, southeastern California and northwestern Mexico, around the head of "
       "the Gulf of California.",
-      "Which giant cactus is the symbol of the Sonoran Desert?", "The saguaro"),
+      "The saguaro cactus grows only in which North American desert?", "The Sonoran Desert"),
     F("Chihuahuan Desert", G("CHIHUAHUAN DESERT"), NA,
       "The largest hot desert in North America, on the plateau of northern Mexico and reaching "
       "into Texas and New Mexico."),
@@ -86,6 +100,9 @@ FEATURES = [
     F("Gibson Desert", G("Gibson Desert"), OC,
       "Desert in Western Australia, between the Great Sandy and Great Victoria Deserts.",
       span=4200),
+    F("Tanami Desert", G("Tanami Desert"), OC,
+      "Remote desert on the Northern Territory–Western Australia border, one of the least "
+      "visited and least disturbed arid regions in Australia."),
     F("Simpson Desert", G("Simpson Desert"), OC,
       "Desert in central Australia, known for its long, parallel red sand dunes.",
       "Which three Australian states and territories meet in the Simpson Desert?",

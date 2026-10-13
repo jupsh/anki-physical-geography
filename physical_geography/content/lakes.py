@@ -35,6 +35,9 @@ FEATURES = [
     F("Great Salt Lake", L("Great Salt"), NA,
       "The largest salt lake in the Western Hemisphere, a remnant of a much larger Ice Age lake.",
       "In which US state is the Great Salt Lake?", "Utah"),
+    F("Lake Athabasca", L("Athabasca"), NA,
+      "Large lake on the Alberta–Saskatchewan border in Canada, draining through the Slave "
+      "River towards Great Slave Lake. Uranium City and Fort Chipewyan stand on its shores."),
     F("Lake Nicaragua", L("Nicaragua"), NA,
       "The largest lake in Central America. It has volcanic islands and bull sharks that swim up "
       "from the Caribbean."),
@@ -64,6 +67,10 @@ FEATURES = [
       "The world's largest permanent desert lake, in the Great Rift Valley. Its northern tip "
       "reaches Ethiopia.",
       "Which country contains most of Lake Turkana?", "Kenya"),
+    F("Lake Kivu", L("Kivu"), AF,
+      "Deep Rift Valley lake on the Rwanda–DR Congo border, between Lake Tanganyika and Lake "
+      "Edward. It holds large stores of dissolved methane and carbon dioxide in its depths.",
+      "Between which two countries does Lake Kivu lie?", "Rwanda and DR Congo"),
     F("Lake Tana", L("Tana"), AF,
       "Lake in the Ethiopian Highlands and the source of the Blue Nile. The city of Bahir Dar "
       "stands on its southern shore.",
@@ -82,11 +89,19 @@ FEATURES = [
       "In which country is Issyk-Kul?", "Kyrgyzstan"),
     F("Qinghai Lake", L("Qinghai"), AS,
       "China's largest lake, a salt lake on the northeastern edge of the Tibetan Plateau."),
+    F("Lake Van", L("Van"), AS,
+      "The largest lake in Turkey, a salty soda lake in the east of the country near the "
+      "Iranian border, with no outlet. The city of Van stands on its eastern shore.",
+      "What is the largest lake in Turkey?", "Lake Van"),
+    F("Poyang Lake", L("Poyang"), AS,
+      "China's largest freshwater lake, in Jiangxi, swelling and shrinking greatly with the "
+      "seasons as the Yangtze rises and falls. A wintering ground for Siberian cranes.",
+      "What is China's largest freshwater lake?", "Poyang Lake"),
     F("Tonlé Sap", L("Tonlé Sap"), AS,
       "The largest freshwater lake in Southeast Asia, in Cambodia. It grows several times larger "
       "in the wet season.",
-      "What unusual thing happens to the Tonlé Sap river each wet season?",
-      "Its flow reverses: Mekong floodwater pushes water back up into the lake"),
+      "Which Cambodian lake grows several times larger each wet season, when its river "
+      "reverses flow?", "Tonlé Sap"),
 
     # ------------------------------------------------------------------ Europe
     F("Lake Ladoga", L("Ladoga"), EU,
@@ -100,11 +115,28 @@ FEATURES = [
     F("Lake Geneva", L("Lake Geneva"), EU,
       "Crescent-shaped lake on the north side of the Alps. The Rhône flows through it.",
       "Which two countries share Lake Geneva?", "Switzerland and France"),
+    F("Lake Peipus", L("Peipus"), EU,
+      "Large lake on the Estonia–Russia border, the fifth-largest in Europe. In 1242 the "
+      "Battle on the Ice was fought on its frozen surface.",
+      "Lake Peipus forms the border between which two countries?", "Estonia and Russia"),
+    F("Lake Balaton", L("Balaton"), EU,
+      "The largest lake in Central Europe (about 77 km long), a shallow holiday lake in "
+      "western Hungary, sometimes called the \"Hungarian Sea\".",
+      "What is the largest lake in Central Europe?", "Lake Balaton"),
+    F("Lake Garda", L("Garda"), EU,
+      "The largest lake in Italy, at the southern foot of the Alps. Olive groves and lemon "
+      "gardens grow on its sheltered shores.",
+      "What is the largest lake in Italy?", "Lake Garda"),
     F("Lake Constance", L("Constance"), EU,
       "Lake on the Rhine at the northern foot of the Alps. Called the Bodensee in German.",
       "Which three countries border Lake Constance?", "Germany, Austria and Switzerland"),
 
     # ------------------------------------------------------------------ Oceania
+    F("Lake Taupō", L("Taupō"), OC,
+      "The largest lake in New Zealand, a volcanic caldera lake on the North Island. It fills "
+      "the crater of one of the world's largest eruptions of the last 5,000 years, in about "
+      "AD 232.",
+      "What is the largest lake in New Zealand?", "Lake Taupō"),
     F("Lake Eyre (Kati Thanda)", L("Eyre North"), OC,
       "Australia's largest lake when it fills, which is rare; usually a dry salt pan. It is in "
       "South Australia, about 15 m below sea level.",

@@ -1,7 +1,7 @@
 # Physical Geography for Anki
 
-An Anki deck of the world's major rivers, mountain ranges, deserts, lakes, plateaus, plains and
-peninsulas. It's built as a companion to
+An Anki deck of the world's major rivers, mountain ranges, volcanoes, deserts, lakes, plateaus,
+plains and peninsulas. It's built as a companion to
 [Ultimate Geography](https://github.com/anki-geo/ultimate-geography): it covers what Ultimate
 Geography doesn't, and its maps use the same style.
 
@@ -10,20 +10,21 @@ then in Anki choose **File → Import**.
 
 ## What's in it
 
-184 features, 516 cards:
+251 features, 711 cards:
 
 | Subdeck | Features |
 |---|---|
-| Rivers | 50 |
-| Mountain Ranges | 34 |
-| Lakes | 28 |
-| Plateaus, Plains & Regions | 27 |
-| Peninsulas | 23 |
-| Deserts | 22 |
+| Rivers | 66 |
+| Mountain Ranges | 47 |
+| Volcanoes | 14 |
+| Deserts | 25 |
+| Lakes | 36 |
+| Plateaus, Plains & Regions | 37 |
+| Peninsulas | 26 |
 
 Each feature has a _Map → Name_ card and a _Name → Map_ card. On the _Name → Map_ card you point
 to the feature on a blank map of its continent; the back highlights it on the same map, so you can
-check exactly where you pointed. 148 features also have a _Fact_ card: one question that ties the
+check exactly where you pointed. 209 features also have a _Fact_ card: one question that ties the
 feature to countries, seas and cities.
 
 <table>

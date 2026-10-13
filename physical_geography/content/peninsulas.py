@@ -1,4 +1,5 @@
 from features import F
+from geodata import Polygon
 from geodata import Region as G
 
 KIND = "Peninsula"
@@ -14,14 +15,28 @@ FEATURES = [
       "What is the largest peninsula in the world?", "The Arabian Peninsula"),
     F("Anatolia", G("ANATOLIA"), AS,
       "The Asian part of Turkey, between the Black Sea and the Mediterranean.",
-      "What is Anatolia's other name?", "Asia Minor"),
+      "Anatolia lies between which two seas?", "The Black Sea and the Mediterranean Sea"),
     F("Indochina", G("INDOCHINA PENINSULA"), AS,
       "Mainland Southeast Asia: Myanmar, Thailand, Laos, Cambodia and Vietnam.",
-      "Which two neighbouring cultures gave Indochina its name?", "India and China"),
+      "Which peninsula holds mainland Southeast Asia: Myanmar, Thailand, Laos, Cambodia and "
+      "Vietnam?", "Indochina"),
     F("Malay Peninsula", G("MALAY PENINSULA"), AS,
       "Long peninsula running south from Indochina, through southern Myanmar and Thailand to "
       "Peninsular Malaysia. Its tip is the southernmost point of mainland Asia.",
       "Which city-state lies at the tip of the Malay Peninsula?", "Singapore"),
+    # Natural Earth has no Sinai polygon; this outline follows its coasts (the Mediterranean,
+    # the Gulfs of Suez and Aqaba) and the straight Egypt–Israel border.
+    F("Sinai Peninsula", Polygon((34.27, 31.31), (33.0, 31.15), (32.30, 31.26), (32.55, 29.97),
+                                 (33.0, 28.60), (33.85, 27.90), (34.25, 27.72), (34.85, 28.40),
+                                 (34.97, 29.50)), (AS, AF),
+      "Triangular peninsula of Egypt between the Mediterranean and the Red Sea, joining "
+      "Africa and Asia. The Suez Canal runs along its western edge, and Mount Sinai stands "
+      "in its southern mountains.",
+      "Which canal runs along the western edge of the Sinai Peninsula?", "The Suez Canal"),
+    F("Shandong Peninsula", G("Shandong Pen."), AS,
+      "Large peninsula in eastern China reaching into the Bohai Sea and Yellow Sea, towards "
+      "Korea. Qingdao stands on its southern coast.",
+      "Into which two seas does the Shandong Peninsula reach?", "The Bohai Sea and the Yellow Sea"),
     F("Korean Peninsula", G("KOREA"), AS,
       "Between the Yellow Sea and the Sea of Japan, divided between North and South Korea."),
     F("Kamchatka", G("KAMCHATKA PENINSULA"), AS,
@@ -37,7 +52,8 @@ FEATURES = [
     F("Yamal Peninsula", G("YAMAL PENINSULA"), AS,
       "Arctic peninsula in northwestern Siberia with some of the world's largest natural gas "
       "reserves. Home of the reindeer-herding Nenets people.",
-      "What does \"Yamal\" mean in the Nenets language?", "\"End of the land\""),
+      "Which Arctic peninsula in northwestern Siberia holds some of the world's largest "
+      "natural gas reserves?", "The Yamal Peninsula"),
 
     # ------------------------------------------------------------------ Europe
     F("Iberian Peninsula", G("PENÍNSULA IBÉRICA"), EU,
@@ -81,6 +97,10 @@ FEATURES = [
     F("Florida", G("FLORIDA"), NA,
       "Peninsula in the southeastern US, between the Gulf of Mexico and the Atlantic. The "
       "Everglades wetland covers much of its southern tip."),
+    F("Seward Peninsula", G("Seward Peninsula"), NA,
+      "Peninsula on Alaska's western coast, reaching into the Bering Strait towards Russia. "
+      "Nome, of the gold-rush and Iditarod fame, stands on its southern shore.",
+      "Which strait does the Seward Peninsula reach into?", "The Bering Strait"),
     F("Alaska Peninsula", G("ALASKA PENINSULA"), NA,
       "Extends about 800 km southwest from mainland Alaska. The Aleutian Islands continue its "
       "line.",

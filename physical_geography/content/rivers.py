@@ -40,6 +40,11 @@ FEATURES = [
     F("Limpopo", R("Limpopo"), AF,
       "Arcs around northern South Africa, then crosses Mozambique to the Indian Ocean.",
       "The Limpopo forms South Africa's border with which two countries?", "Botswana and Zimbabwe"),
+    F("Okavango", R("Okavango"), AF,
+      "Rises in Angola and flows southeast into Botswana, where it spreads into the Okavango "
+      "Delta, a vast inland wetland in the Kalahari. It never reaches the sea.",
+      "Which river spreads into a vast inland delta in Botswana and never reaches the sea?",
+      "The Okavango"),
     F("Senegal", R("Sénégal"), AF,
       "Rises in Guinea, crosses western Mali and flows to the Atlantic at Saint-Louis.",
       "Which border does the Senegal River form on its lower course?", "Senegal–Mauritania"),
@@ -53,7 +58,7 @@ FEATURES = [
     F("Yellow River (Huang He)", R("Huang", "Yellow"), AS,
       "China's second-longest river (about 5,460 km). Flows from the Tibetan Plateau in a great "
       "loop north and back south, then east to the Bohai Sea.",
-      "Where does the Yellow River get its colour?", "Silt (loess) picked up crossing the Loess Plateau"),
+      "What is China's second-longest river?", "The Yellow River (Huang He)"),
     F("Mekong", R("Mekong", "Za"), AS,
       "Flows about 4,900 km from Tibet through China, along the borders of Myanmar, Laos and "
       "Thailand, and across Cambodia and Vietnam to the South China Sea.",
@@ -66,7 +71,7 @@ FEATURES = [
     F("Brahmaputra", R("Brahmaputra", "Dihang", "Damqogkanbab"), AS,
       "Rises in Tibet, flows east along the north side of the Himalayas, then cuts south into "
       "India (Assam) and joins the Ganges in Bangladesh.",
-      "What is the Brahmaputra called in Tibet?", "The Yarlung Tsangpo"),
+      "Which river rises in Tibet and joins the Ganges in Bangladesh?", "The Brahmaputra"),
     F("Indus", R("Indus"), AS,
       "Rises in Tibet, flows northwest through Ladakh and then the length of Pakistan to the "
       "Arabian Sea. Gave its name to India and to the Indus Valley Civilisation.",
@@ -98,11 +103,33 @@ FEATURES = [
     F("Amu Darya", R("Amu Darya", "Panj"), AS,
       "Flows from the Pamirs along Afghanistan's northern border, then through Turkmenistan and "
       "Uzbekistan towards the Aral Sea.",
-      "What was the Amu Darya called in antiquity?", "The Oxus"),
+      "The Amu Darya forms most of the northern border of which country?", "Afghanistan"),
     F("Syr Darya", R("Syr Darya"), AS,
       "Rises in the Tian Shan, crosses the Fergana Valley and flows through Kazakhstan towards "
       "the Aral Sea.",
       "Irrigation from the Syr Darya and Amu Darya caused which lake to shrink dramatically?", "The Aral Sea"),
+    F("Salween", R("Salween", "Nu"), AS,
+      "Flows about 3,300 km from Tibet through Yunnan and along the Myanmar–Thailand border "
+      "to the Andaman Sea. It is one of the longest free-flowing rivers in Asia. Called the "
+      "Nu in China.",
+      "Which river forms much of the Myanmar–Thailand border before reaching the Andaman Sea?",
+      "The Salween"),
+    F("Chao Phraya", R("Chao Phraya"), AS,
+      "Thailand's main river. Formed by the Ping and Nan in the north, it flows south past "
+      "Ayutthaya and Bangkok to the Gulf of Thailand.",
+      "Which capital city stands near the mouth of the Chao Phraya?", "Bangkok"),
+    F("Pearl River", R("Pearl"), AS,
+      "Drains much of southern China through the Xi and its tributaries to a delta on the "
+      "South China Sea, past Guangzhou, Hong Kong and Macau.",
+      "Into which sea does the Pearl River flow?", "The South China Sea"),
+    F("Kolyma", R("Kolyma"), AS,
+      "Flows about 2,100 km northeast through Siberia to the East Siberian Sea. Gold mining "
+      "along it used Gulag prison labour under Stalin.",
+      "Into which sea does the Kolyma flow?", "The East Siberian Sea"),
+    F("Godavari", R("Godävari"), AS,
+      "The longest river of peninsular India (about 1,470 km). Rises near Mumbai and flows "
+      "east across the Deccan Plateau to the Bay of Bengal.",
+      "Into which bay does the Godavari flow?", "The Bay of Bengal"),
     F("Irrawaddy", R("Irrawaddy", "Irrawaddy Delta"), AS,
       "Myanmar's main river. Flows south through the length of the country, past the former royal "
       "capital Mandalay, to a large delta.",
@@ -122,7 +149,7 @@ FEATURES = [
       "Europe's second-longest river (about 2,850 km). Rises in Germany's Black Forest and passes "
       "through or along ten countries to a delta in Romania on the Black Sea. Four capitals stand "
       "on it: Vienna, Bratislava, Budapest and Belgrade.",
-      "Which capital's name joins those of two towns on opposite banks of the Danube?", "Budapest"),
+      "What is Europe's second-longest river?", "The Danube"),
     F("Rhine", R("Rhine", "Rhein", "Rhin"), EU,
       "Flows about 1,230 km from the Swiss Alps through Lake Constance, along the French–German "
       "border and through Germany to the Netherlands, where Rotterdam stands at its mouth.",
@@ -155,6 +182,18 @@ FEATURES = [
       "Rises in a Swiss glacier and flows through Lake Geneva and southeastern France. The Saône "
       "joins it at Lyon.",
       "Into which sea does the Rhône flow?", "The Mediterranean Sea"),
+    F("Oder", R("Oder"), EU,
+      "Flows about 850 km from the Czech Republic through western Poland to the Baltic Sea. "
+      "Its lower course forms much of the Poland–Germany border, the Oder–Neisse line.",
+      "Which border does the lower Oder form?", "Poland–Germany"),
+    F("Severn", R("Severn", within=(-6, 50, -2, 54)), EU,
+      "The longest river in Great Britain (about 350 km). Rises in Wales and flows through "
+      "Shrewsbury, Worcester and Gloucester to the Bristol Channel, with a famous tidal bore.",
+      "What is the longest river in Great Britain?", "The Severn", span=1400),
+    F("Tagus", R("Tagus", "Tajo"), EU,
+      "The longest river of the Iberian Peninsula (about 1,010 km). Rises in Spain, crosses "
+      "Portugal and reaches the Atlantic at Lisbon. Called the Tajo in Spanish.",
+      "Which capital city stands at the mouth of the Tagus?", "Lisbon"),
     F("Po", R("Po"), EU,
       "Italy's longest river (about 650 km). Flows east from the Alps past Turin across the "
       "northern Italian plain.",
@@ -181,7 +220,8 @@ FEATURES = [
     F("Rio Grande", R("Rio Grande"), NA,
       "Flows from Colorado through New Mexico, then forms the US–Mexico border from El Paso to "
       "the Gulf of Mexico.",
-      "What is the Rio Grande called in Mexico?", "Río Bravo (del Norte)"),
+      "The Rio Grande forms much of the border between which two countries?",
+      "The United States and Mexico"),
     F("St. Lawrence", R("St. Lawrence"), NA,
       "Drains the Great Lakes, flowing northeast from Lake Ontario past Montreal and Quebec City "
       "to the Gulf of St. Lawrence.",
@@ -193,6 +233,16 @@ FEATURES = [
     F("Yukon", R("Yukon"), NA,
       "Rises in British Columbia and flows northwest across Canada's Yukon territory and Alaska.",
       "Into which sea does the Yukon flow?", "The Bering Sea"),
+    F("Snake River", R("Snake"), NA,
+      "The largest tributary of the Columbia (about 1,740 km). Rises in Yellowstone, crosses "
+      "Idaho past Twin Falls and cuts Hells Canyon, the deepest river gorge in North America, "
+      "before joining the Columbia in Washington.",
+      "Which river cuts Hells Canyon, the deepest river gorge in North America?",
+      "The Snake River"),
+    F("Fraser River", R("Fraser", within=(-130, 45, -115, 60)), NA,
+      "British Columbia's longest river (about 1,370 km). Rises in the Rocky Mountains and "
+      "reaches the Pacific at Vancouver, through the deep Fraser Canyon.",
+      "What is British Columbia's longest river?", "The Fraser River"),
     # Natural Earth labels part of the Snake "Columbia"
     F("Columbia", R("Columbia", exclude=(-117.5, 42, -109, 45)), NA,
       "Rises in the Canadian Rockies and flows through Washington to the Pacific. Its many dams "
@@ -215,11 +265,32 @@ FEATURES = [
       "Flows in a wide arc through Venezuela, forming part of the Colombia–Venezuela border, to a "
       "delta on the Atlantic. A natural channel, the Casiquiare, links it to the Amazon basin.",
       "Which country contains most of the Orinoco?", "Venezuela"),
+    F("São Francisco", R("São Francisco"), SA,
+      "Flows about 2,900 km through eastern Brazil, rising in Minas Gerais and reaching the "
+      "Atlantic between Alagoas and Sergipe. It is the longest river entirely in Brazil.",
+      "What is the longest river entirely in Brazil?", "The São Francisco"),
+    F("Tocantins", R("Tocantins"), SA,
+      "Flows about 2,450 km north through central Brazil to the Pará estuary near Belém, "
+      "largely parallel to and east of the Amazon.",
+      "In which country is the Tocantins River?", "Brazil"),
+    F("Madeira", R("Madeira"), SA,
+      "The Amazon's largest tributary by discharge. Formed in Bolivia by Andean rivers, it "
+      "joins the Amazon east of Manaus in Brazil.",
+      "What is the Amazon's largest tributary by discharge?", "The Madeira"),
+    # Natural Earth labels the Paraguay's course "Paraná"
+    F("Paraguay River", R("Paraná", within=(-60, -28, -55, -14), exclude=(-57, -28, -54, -24)), SA,
+      "Flows about 2,550 km south from the Pantanal in Brazil, through Paraguay past Asunción, "
+      "and along the Paraguay–Argentina border to join the Paraná.",
+      "Which capital city stands on the Paraguay River?", "Asunción"),
     F("Magdalena", R("Magdalena"), SA,
       "Colombia's main river. Flows north between the Andean ranges.",
       "Into which sea does the Magdalena flow?", "The Caribbean Sea"),
 
     # ------------------------------------------------------------------ Oceania
+    F("Darling River", R("Darling"), OC,
+      "The Murray's main tributary (about 1,470 km). Rises in northern New South Wales and "
+      "flows southwest across dry plains to join the Murray at Wentworth.",
+      "Which river is the Murray's main tributary?", "The Darling River"),
     F("Murray", R("Murray"), OC,
       "Australia's longest river (about 2,500 km). Rises in the Australian Alps and reaches the "
       "sea in South Australia. Its main tributary is the Darling.",

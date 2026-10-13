@@ -5,6 +5,10 @@ Feature sources used by the content modules:
     Region("HIMALAYAS")                   # ne_10m_geography_regions_polys, matched on NAME
     Lake("Baikal")                        # ne_10m_lakes, matched on name / name_en
     River("Nile", "White Nile", ...)      # ne_10m_rivers_lake_centerlines, all segments with these names
+    Peak("Mount Etna")                    # ne_10m_geography_regions_elevation_points, matched on name / name_en
+    Polygon((lon, lat), ...)              # hand-traced outline, only where Natural Earth has no
+                                          # polygon for a major feature (Mojave, Sinai) and the
+                                          # boundary is set by coasts or well-mapped ecoregion edges
 
 `within=(west, south, east, north)` keeps only geometry whose bbox centre is inside that box,
 for names that occur more than once (e.g. the Colorado in Texas vs. the one in Arizona).
@@ -104,6 +108,38 @@ class Lake:
         if any(_km(first, p[0][0]) > 800 for p in polys):
             raise SystemExit(f"lake {self.name}: matches lakes far apart; use within=(w, s, e, n)")
         return "lake", polys
+
+
+@dataclass(frozen=True)
+class Peak:
+    """A single summit (volcanoes) from Natural Earth's elevation points."""
+
+    name: str
+
+    def shapes(self):
+        want = _norm(self.name)
+        pts = [(f["geometry"]["coordinates"][0], f["geometry"]["coordinates"][1])
+               for f in load("ne_10m_geography_regions_elevation_points")
+               if want in (_norm(f["properties"]["name"]), _norm(f["properties"]["name_en"]))]
+        if not pts:
+            raise SystemExit(f"peak not found: {self.name}")
+        if len(pts) > 1:
+            raise SystemExit(f"peak {self.name}: matched {len(pts)} points; use a unique name")
+        return "point", [pts]
+
+
+class Polygon:
+    """A hand-traced outline ((lon, lat) vertices) for a major feature that
+    Natural Earth has no polygon for. Keep vertices on coasts or mapped ecoregion edges."""
+
+    def __init__(self, *coords):
+        self.coords = coords
+
+    def shapes(self):
+        ring = [tuple(p) for p in self.coords]
+        if ring[0] != ring[-1]:
+            ring.append(ring[0])
+        return "area", [[ring]]
 
 
 class River:

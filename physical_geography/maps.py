@@ -374,7 +374,7 @@ def continent_view(region):
 # --------------------------------------------------------------------------- render
 
 def _seqs(kind, shapes):
-    return shapes if kind == "river" else [ring for poly in shapes for ring in poly]
+    return shapes if kind in ("river", "point") else [ring for poly in shapes for ring in poly]
 
 
 def render_svg(source, zoom=1.0, span=None, center=None):
@@ -409,8 +409,14 @@ def _svg(v, kind, shapes, locator, overlay=False):
     if kind == "river":
         out.append(f'<path d="{v.line_path(shapes)}" fill="none" stroke="{RIVER}" stroke-width="3.6" '
                    f'stroke-linecap="round" stroke-linejoin="round"/>')
+    if kind == "point":
+        for X, Y in v.pixels(seqs):
+            out.append(f'<circle cx="{X:.1f}" cy="{Y:.1f}" r="16" fill="none" stroke="{HI_LAND}" '
+                       f'stroke-width="2.5"/>'
+                       f'<circle cx="{X:.1f}" cy="{Y:.1f}" r="6.5" fill="{HI_LAND}" '
+                       f'stroke="#ffffff" stroke-width="1.8"/>')
     pix = [p for p in v.pixels(seqs) if 0 <= p[0] <= W and 0 <= p[1] <= v.h]
-    if pix:
+    if pix and kind != "point":
         xs, ys = [p[0] for p in pix], [p[1] for p in pix]
         size = max(max(xs) - min(xs), max(ys) - min(ys))
         if size < 30:  # too small to spot: ring it, as UG does for small countries
