@@ -98,7 +98,11 @@ existing notes and keeps your progress. Renaming a feature, though, adds it as a
 ### Terrain map experiment
 
 An optional preview compares shaded relief with the current maps for the Himalayas, Tibetan
-Plateau, Mekong, Sahara and the Asia recall map. Download Natural Earth's
+Plateau, Mekong, Sahara and the Asia recall map.
+
+<img src="doc/terrain-comparison.jpg" width="760" alt="Current and terrain maps of the Himalayas and the Mekong, side by side">
+
+Download Natural Earth's
 [HYP_LR_SR raster](https://naturalearth.s3.amazonaws.com/10m_raster/HYP_LR_SR.zip) (103 MB,
 version 3.2.0, public domain) and extract `HYP_LR_SR.tif` into
 `build/natural_earth/terrain/`. Then run:
