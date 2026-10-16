@@ -95,6 +95,30 @@ about a minute. Maps are then cached in `build/physical_geography/`.
 Note GUIDs come from each feature's kind and name, so re-importing a new version updates your
 existing notes and keeps your progress. Renaming a feature, though, adds it as a new note.
 
+### Terrain map experiment
+
+An optional preview compares shaded relief with the current maps for the Himalayas, Tibetan
+Plateau, Mekong, Sahara and the Asia recall map. Download Natural Earth's
+[HYP_LR_SR raster](https://naturalearth.s3.amazonaws.com/10m_raster/HYP_LR_SR.zip) (103 MB,
+version 3.2.0, public domain) and extract `HYP_LR_SR.tif` into
+`build/natural_earth/terrain/`. Then run:
+
+```sh
+uv run python scripts/preview_terrain.py
+```
+
+Open `build/terrain_preview/index.html` to compare styles, toggle country borders,
+view maps at phone width and reveal the Himalayas on the continent map. The country overlay
+shows borders only, with no country names. Use `--overlays-only` to reuse the base maps when iterating
+on overlays. The experiment uses the existing projection, with lighter
+borders and transparent area highlights. Terrain maps carry a scale bar (true at the map
+centre; the projection stretches distances away from it) and a white-cased highlight outline
+so the feature stays legible over busy relief at phone width. Terrain colours combine
+elevation and environment; they are not a numerical elevation scale. Terrain maps are saved
+as WebP (quality 80), roughly a ninth the size of the equivalent full-colour PNGs, though
+still larger than the current maps. This preview does not change the default deck build or
+the release package.
+
 ## Contributing
 
 Spotted a mistake, or think a feature is missing? [Open an issue](https://github.com/jupsh/anki-physical-geography/issues).
