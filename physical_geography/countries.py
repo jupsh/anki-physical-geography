@@ -1,4 +1,4 @@
-"""Transparent country borders for the terrain comparison.
+"""Transparent country borders, baked into the deck's terrain maps.
 
 Borders only — no country names. The locator corner, when present, is masked
 out so the overlay never draws over the inset.

@@ -19,6 +19,7 @@ import genanki
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
 
+import countries  # noqa: E402
 import maps  # noqa: E402
 
 ROOT = HERE.parent
@@ -110,8 +111,9 @@ MODEL = genanki.Model(
 
 DECK_DESCRIPTION = (
     "Rivers, mountain ranges, volcanoes, deserts, lakes, plateaus, plains and peninsulas of the "
-    "world: a companion to Ultimate Geography, with maps in the same style. Each feature has a "
-    "Map → Name card, a Name → Map card and, for most, a fact card. Map data: "
+    "world: a companion to Ultimate Geography. Each feature has a "
+    "Map → Name card, a Name → Map card and, for most, a fact card. Maps use shaded relief "
+    "with country borders (no country names) and a scale bar. Map data: "
     "<a href='https://www.naturalearthdata.com/'>Natural Earth</a> (public domain)."
 )
 
@@ -136,34 +138,55 @@ def validate(where, *fields):
 
 
 RENDER_KEY = hashlib.sha1(
-    ((HERE / "maps.py").read_text() + (HERE / "geodata.py").read_text()).encode()).hexdigest()[:10]
+    "".join((HERE / n).read_text() for n in
+            ("maps.py", "geodata.py", "terrain.py", "countries.py")).encode()).hexdigest()[:10]
 
 
 def src_spec(feat):
     return (feat.src.__class__.__name__, vars(feat.src))
 
 
+def with_borders(base_webp, overlay_png):
+    """Bake the country-borders overlay (borders only, no names) into a terrain map."""
+    import io
+
+    from PIL import Image
+
+    base = Image.open(io.BytesIO(base_webp)).convert("RGBA")
+    base.alpha_composite(Image.open(io.BytesIO(overlay_png)).convert("RGBA"))
+    buf = io.BytesIO()
+    base.save(buf, "WEBP", quality=80, method=6)
+    return buf.getvalue()
+
+
 def map_file(feat):
-    """Render (or reuse) the feature's close-up map; returns its path."""
+    """Render (or reuse) the feature's terrain close-up map; returns its path."""
     return cached(f"pg-map-{slug(feat.name)}", (src_spec(feat), sorted(feat.view.items())),
-                  lambda: maps.render_png(feat.src, **feat.view))
+                  lambda: with_borders(
+                      maps.render_png(feat.src, **feat.view, terrain=True, webp_quality=80),
+                      countries.for_feature(feat)),
+                  ext="webp")
 
 
 def continent_file(region, feat=None):
-    """Render (or reuse) the blank continent map, or the feature's highlight to lay over it."""
+    """Render (or reuse) the blank terrain continent map, or the feature's highlight."""
     if feat is None:
-        return cached(f"pg-blank-{slug(region)}", region, lambda: maps.render_continent_png(region))
+        return cached(f"pg-blank-{slug(region)}", region,
+                      lambda: with_borders(
+                          maps.render_continent_png(region, terrain=True, webp_quality=80),
+                          countries.render(maps.continent_view(region))),
+                      ext="webp")
     return cached(f"pg-highlight-{slug(feat.name)}", (region, src_spec(feat)),
-                  lambda: maps.render_continent_png(region, feat.src))
+                  lambda: maps.render_continent_png(region, feat.src, terrain=True))
 
 
-def cached(name, spec, render):
+def cached(name, spec, render, ext="png"):
     key = hashlib.sha1((RENDER_KEY + repr(spec)).encode()).hexdigest()[:10]
-    cache = BUILD / "cache" / f"{name}-{key}.png"
+    cache = BUILD / "cache" / f"{name}-{key}.{ext}"
     if not cache.exists():
         cache.parent.mkdir(parents=True, exist_ok=True)
         cache.write_bytes(render())
-    out = BUILD / "media" / f"{name}.png"
+    out = BUILD / "media" / f"{name}.{ext}"
     out.parent.mkdir(parents=True, exist_ok=True)
     if not out.exists() or out.read_bytes() != cache.read_bytes():
         out.write_bytes(cache.read_bytes())

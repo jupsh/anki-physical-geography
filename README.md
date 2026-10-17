@@ -3,7 +3,8 @@
 An Anki deck of the world's major rivers, mountain ranges, volcanoes, deserts, lakes, plateaus,
 plains and peninsulas. It's built as a companion to
 [Ultimate Geography](https://github.com/anki-geo/ultimate-geography): it covers what Ultimate
-Geography doesn't, and its maps use the same style.
+Geography doesn't. Its maps are shaded relief with country borders (no country names) and a
+scale bar.
 
 **[Download Physical_Geography.apkg](https://github.com/jupsh/anki-physical-geography/releases/latest/download/Physical_Geography.apkg)**,
 then in Anki choose **File → Import**.
@@ -66,11 +67,15 @@ build [filtered decks](https://docs.ankiweb.net/filtered-decks.html) for narrowe
 
 ## Maps
 
-The maps are drawn from [Natural Earth](https://www.naturalearthdata.com/) data (public domain) in
-Ultimate Geography's colours, with a world locator in one corner. Each map is centred on its
-feature (Lambert azimuthal equal-area), so shapes stay true at any latitude. Unlike Ultimate
-Geography's maps, they also show major rivers and the state/province lines of the largest
-countries, faintly, as landmarks.
+The maps are shaded-relief (topographic) maps drawn from
+[Natural Earth](https://www.naturalearthdata.com/) data (public domain), with a world locator in
+one corner. Each map is centred on its feature (Lambert azimuthal equal-area), so shapes stay
+true at any latitude. They show country borders as landmarks — borders only, with no country
+names — plus major rivers, and a scale bar whose full length is the labelled distance (true at
+the map centre; the projection stretches distances away from it). Area features are outlined
+in red with a white casing so they stay legible over busy relief. Terrain colours combine
+elevation and environment; they are not a numerical elevation scale. Maps are saved as WebP,
+roughly a ninth the size of equivalent full-colour PNGs.
 
 The _Name → Map_ cards also use a fixed map of each continent, in the same style but without the
 locator.
@@ -89,39 +94,31 @@ uv run python physical_geography/build.py --html out.html # plus an HTML preview
 uv run python physical_geography/build.py --only Nile     # just matching features, into build/
 ```
 
-The first build downloads the Natural Earth files (~30 MB) into `build/natural_earth/` and takes
-about a minute. Maps are then cached in `build/physical_geography/`.
+The first build downloads the Natural Earth files (~30 MB) plus the shaded-relief raster
+(103 MB) into `build/natural_earth/` and takes a while — about 40 minutes for all 251
+terrain maps on first render. Maps are then cached in `build/physical_geography/`, so later
+builds are fast.
 
 Note GUIDs come from each feature's kind and name, so re-importing a new version updates your
 existing notes and keeps your progress. Renaming a feature, though, adds it as a new note.
 
-### Terrain map experiment
+### Terrain style comparison
 
-An optional preview compares shaded relief with the current maps for the Himalayas, Tibetan
-Plateau, Mekong, Sahara and the Asia recall map.
+A small preview compares the previous flat style with the shaded-relief maps for the
+Himalayas, Tibetan Plateau, Mekong, Sahara and the Asia recall map:
 
-<img src="doc/terrain-comparison.jpg" width="760" alt="Current and terrain maps of the Himalayas and the Mekong, side by side">
+<img src="doc/terrain-comparison.jpg" width="760" alt="Flat and terrain maps of the Himalayas and the Mekong, side by side">
 
-Download Natural Earth's
-[HYP_LR_SR raster](https://naturalearth.s3.amazonaws.com/10m_raster/HYP_LR_SR.zip) (103 MB,
-version 3.2.0, public domain) and extract `HYP_LR_SR.tif` into
-`build/natural_earth/terrain/`. Then run:
+The relief raster (Natural Earth HYP_LR_SR v3.2.0, public domain) is downloaded automatically
+on the first build. To rebuild just the comparison, run:
 
 ```sh
 uv run python scripts/preview_terrain.py
 ```
 
 Open `build/terrain_preview/index.html` to compare styles, toggle country borders,
-view maps at phone width and reveal the Himalayas on the continent map. The country overlay
-shows borders only, with no country names. Use `--overlays-only` to reuse the base maps when iterating
-on overlays. The experiment uses the existing projection, with lighter
-borders and transparent area highlights. Terrain maps carry a scale bar (true at the map
-centre; the projection stretches distances away from it) and a white-cased highlight outline
-so the feature stays legible over busy relief at phone width. Terrain colours combine
-elevation and environment; they are not a numerical elevation scale. Terrain maps are saved
-as WebP (quality 80), roughly a ninth the size of the equivalent full-colour PNGs, though
-still larger than the current maps. This preview does not change the default deck build or
-the release package.
+view maps at phone width and reveal the Himalayas on the continent map. Use `--overlays-only`
+to reuse the base maps when iterating on overlays.
 
 ## Contributing
 
