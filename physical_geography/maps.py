@@ -265,9 +265,16 @@ def _all_lines(name):
     return [ln for f in load(name) if f["geometry"] for ln in lines(f["geometry"])]
 
 
-def base_layers(v):
+def base_layers(v, terrain=False):
     out = [f'<rect width="{W}" height="{v.h}" fill="{WATER}"/>']
-    out.append(f'<path d="{v.poly_path(_all_polys("ne_50m_land"))}" fill="{LAND}"/>')
+    land = v.poly_path(_all_polys("ne_50m_land"))
+    out.append(f'<path d="{land}" fill="{LAND}"/>')
+    if terrain:
+        from terrain import relief_uri
+
+        out.append(f'<defs><clipPath id="land"><path d="{land}"/></clipPath></defs>')
+        out.append(f'<image width="{W}" height="{v.h}" clip-path="url(#land)" '
+                   f'href="{relief_uri(v, W)}"/>')
     return out
 
 
@@ -276,11 +283,21 @@ def water_layers(v):
             f'stroke="{COAST}" stroke-width="0.9"/>']
 
 
-def line_layers(v):
+def line_layers(v, terrain=False):
     """Context lines: states/provinces of the largest countries and major rivers (both faint,
     since UG's maps have neither), then country borders and coasts."""
     rivers = [ln for f in load("ne_50m_rivers_lake_centerlines")
               if f["geometry"] and f["properties"]["scalerank"] <= 5 for ln in lines(f["geometry"])]
+    if terrain:
+        return [
+            f'<path d="{v.line_path(rivers)}" fill="none" stroke="#669db5" '
+            f'stroke-width="0.9" stroke-linejoin="round"/>',
+            f'<path d="{v.line_path(_all_lines("ne_50m_admin_0_boundary_lines_land"))}" '
+            f'fill="none" stroke="#55564b" stroke-opacity="0.45" stroke-width="0.8" '
+            f'stroke-linejoin="round"/>',
+            f'<path d="{v.line_path(_all_lines("ne_50m_coastline"))}" fill="none" '
+            f'stroke="#56869a" stroke-width="0.8" stroke-linejoin="round"/>',
+        ]
     return [
         f'<path d="{v.line_path(_all_lines("ne_50m_admin_1_states_provinces_lines"))}" fill="none" '
         f'stroke="{STATE}" stroke-width="0.7" stroke-linejoin="round"/>',
@@ -377,36 +394,88 @@ def _seqs(kind, shapes):
     return shapes if kind in ("river", "point") else [ring for poly in shapes for ring in poly]
 
 
-def render_svg(source, zoom=1.0, span=None, center=None):
+def render_svg(source, zoom=1.0, span=None, center=None, terrain=False):
     kind, shapes = source.shapes()
     v = View(_seqs(kind, shapes), zoom=zoom, span=span, center=center)
-    return _svg(v, kind, shapes, locator=True)
+    return _svg(v, kind, shapes, locator=True, terrain=terrain)
 
 
-def render_continent_svg(region, source=None):
+def render_continent_svg(region, source=None, terrain=False):
     """The blank continent map, or (given a source) a transparent overlay of just the feature's
     highlight, to lay over the blank map. One shared base keeps the deck small."""
     if source is None:
-        return _svg(continent_view(region), None, [], locator=False)
+        return _svg(continent_view(region), None, [], locator=False, terrain=terrain)
     kind, shapes = source.shapes()
-    return _svg(continent_view(region), kind, shapes, locator=False, overlay=True)
+    return _svg(continent_view(region), kind, shapes, locator=False, overlay=True, terrain=terrain)
 
 
-def _svg(v, kind, shapes, locator, overlay=False):
+NICE_KM = (20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50, 20, 10)
+
+
+def scale_bar_km(v, target_px=170):
+    """A nice round length (km) and its width in px at the map centre.
+
+    LAEA scale is true at the centre and grows away from it, so the bar is a
+    centre scale, not an exact measure at the map edges. The width is kept
+    above ~110 px so the end labels cannot collide, stepping up to the next
+    nice length when the largest fitting one would be too short.
+    """
+    km_per_px = R_KM / v.scale
+    raw = km_per_px * target_px
+    for i, nice in enumerate(NICE_KM):
+        if nice <= raw:
+            if nice / km_per_px < 110 and i > 0:
+                nice = NICE_KM[i - 1]
+            return nice, nice / km_per_px
+    return 10, 10 / km_per_px
+
+
+def scale_bar(v, corner="rb"):
+    """A single undivided bar labelled only with its total length.
+
+    Divided bars need a label at every division or the divisions mean
+    nothing, and those labels collide at continent scale, so there are
+    no divisions and no "0" — the bar's length is the labelled length.
+    """
+    total, width = scale_bar_km(v)
+    x = 18 if corner[0] == "l" else W - 18 - width
+    top = v.h - 64
+    bar_y = top + 12
+    return (f'<rect x="{x - 10:.1f}" y="{top:.1f}" width="{width + 20:.1f}" height="58" '
+            f'rx="6" fill="#ffffff" fill-opacity="0.85" stroke="#24352d" '
+            f'stroke-opacity="0.25"/>'
+            f'<rect x="{x:.1f}" y="{bar_y:.1f}" width="{width:.1f}" height="9" '
+            f'fill="#24352d"/>'
+            f'<text x="{x + width:.1f}" y="{bar_y + 30:.1f}" font-family="sans-serif" '
+            f'font-size="16" font-weight="bold" fill="#24352d" '
+            f'text-anchor="end">{total:,g} km</text>')
+
+
+def _svg(v, kind, shapes, locator, overlay=False, terrain=False):
     seqs = _seqs(kind, shapes)
-    out = [] if overlay else base_layers(v)
+    out = [] if overlay else base_layers(v, terrain=terrain)
     if kind == "area":
         # an overlay can't put the borders and rivers back on top, so let them show through
-        out.append(f'<path d="{v.poly_path(shapes)}" fill="{HI_LAND}" '
-                   f'fill-opacity="{0.7 if overlay else 0.85}" fill-rule="evenodd"/>')
+        opacity = 0.12 if terrain else (0.7 if overlay else 0.85)
+        path = v.poly_path(shapes)
+        if terrain and not overlay:
+            out.append(f'<path d="{path}" fill="none" stroke="#ffffff" stroke-opacity="0.85" '
+                       f'stroke-width="6.5" stroke-linejoin="round"/>')
+        edge = f' stroke="{HI_LAND}" stroke-width="2.8" stroke-linejoin="round"' if terrain else ''
+        out.append(f'<path d="{path}" fill="{HI_LAND}" '
+                   f'fill-opacity="{opacity}" fill-rule="evenodd"{edge}/>')
     if not overlay:
         out += water_layers(v)
     if kind == "lake":
         out.append(f'<path d="{v.poly_path(shapes)}" fill="{HI_WATER}" stroke="{COAST}" '
                    f'stroke-width="1" fill-rule="evenodd"/>')
     if not overlay:
-        out += line_layers(v)
+        out += line_layers(v, terrain=terrain)
     if kind == "river":
+        if terrain:
+            out.append(f'<path d="{v.line_path(shapes)}" fill="none" stroke="#ffffff" '
+                       f'stroke-opacity="0.85" stroke-width="6" stroke-linecap="round" '
+                       f'stroke-linejoin="round"/>')
         out.append(f'<path d="{v.line_path(shapes)}" fill="none" stroke="{RIVER}" stroke-width="3.6" '
                    f'stroke-linecap="round" stroke-linejoin="round"/>')
     if kind == "point":
@@ -423,27 +492,39 @@ def _svg(v, kind, shapes, locator, overlay=False):
             colour = HI_LAND if kind == "area" else RIVER
             out.append(f'<circle cx="{(min(xs) + max(xs)) / 2:.1f}" cy="{(min(ys) + max(ys)) / 2:.1f}" '
                        f'r="{size / 2 + 16:.1f}" fill="none" stroke="{colour}" stroke-width="2.5"/>')
+    corner = _corner(pix, v.h) if locator else "lb"
     if locator:
-        out += inset(v, _corner(pix, v.h))
+        out += inset(v, corner)
+    if terrain and not overlay:
+        bar_corner = "rb" if corner[0] == "l" else "lb"
+        out.append(scale_bar(v, bar_corner))
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{v.h}" '
             f'viewBox="0 0 {W} {v.h}">' + "".join(out) + "</svg>")
 
 
-def render_png(source, **view):
-    return to_png(render_svg(source, **view))
+def render_png(source, webp_quality=None, **view):
+    return to_png(render_svg(source, **view), full_color=view.get("terrain", False),
+                  webp_quality=webp_quality)
 
 
-def render_continent_png(region, source=None):
-    return to_png(render_continent_svg(region, source), alpha=source is not None)
+def render_continent_png(region, source=None, terrain=False, webp_quality=None):
+    return to_png(render_continent_svg(region, source, terrain=terrain),
+                  alpha=source is not None, full_color=terrain, webp_quality=webp_quality)
 
 
-def to_png(svg, alpha=False):
+def to_png(svg, alpha=False, full_color=False, webp_quality=None):
     import cairosvg
     from PIL import Image
 
     png = cairosvg.svg2png(bytestring=svg.encode())
     im = Image.open(io.BytesIO(png)).convert("RGBA" if alpha else "RGB")
-    im = im.quantize(colors=128, method=Image.Quantize.FASTOCTREE)
     buf = io.BytesIO()
+    if webp_quality is not None:
+        # Photographic relief compresses ~9x smaller as lossy WebP than PNG,
+        # at the same resolution. Alpha (transparent overlays) is preserved.
+        im.save(buf, "WEBP", quality=webp_quality, method=6)
+        return buf.getvalue()
+    if not full_color:
+        im = im.quantize(colors=128, method=Image.Quantize.FASTOCTREE)
     im.save(buf, "PNG", optimize=True)
     return buf.getvalue()
